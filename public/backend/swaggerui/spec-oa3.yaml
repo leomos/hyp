@@ -1,0 +1,778 @@
+openapi: 3.0.1
+info:
+  title: ebookit
+  version: 0.0.1
+servers:
+- url: http://localhost:8080/
+- url: https://localhost:8080/
+tags:
+- name: user
+  description: Operations about user
+- name: author
+  description: Author's management
+- name: theme
+  description: Theme's management
+- name: genre
+  description: Genre's management
+- name: book
+  description: Book's management
+- name: event
+  description: Event's management
+- name: cart
+  description: Cart's management
+- name: review
+  description: Review's management
+paths:
+  /users:
+    post:
+      tags:
+      - user
+      description: Register a new user
+      operationId: addUser
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserRegistration'
+        required: true
+      responses:
+        200:
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+              example:
+                id: 1
+                email: admin@example.org
+                first_name: John
+                last_name: Doe
+        400:
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              example:
+                code: 101
+                message: One or more fields are incorrect
+      x-swagger-router-controller: User
+  /users/me:
+    get:
+      tags:
+      - user
+      description: Returns logged in user details
+      operationId: getLoggedUserDetails
+      parameters:
+      - name: user_sid
+        in: cookie
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: string
+      responses:
+        200:
+          description: Successfully returns user details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        403:
+          description: User is not logged in
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              example:
+                code: 102
+                message: User is not logged in
+      security:
+      - cookieAuth: []
+      x-swagger-router-controller: User
+  /users/login:
+    post:
+      tags:
+      - user
+      description: Logs a user in, using cookies authentication method
+      operationId: login
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserLogin'
+        required: true
+      responses:
+        200:
+          description: Successfully returns user details
+          headers:
+            Set-Cookie:
+              style: simple
+              explode: false
+              schema:
+                type: string
+                example: user_sid=abcde12345; Path=/; HttpOnly
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        403:
+          description: Credentials are not valid
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              example:
+                code: 103
+                message: Credentials are not valid
+      x-swagger-router-controller: User
+  /users/logout:
+    get:
+      tags:
+      - user
+      description: Logs a user out, destroying the session previously created
+      operationId: logout
+      responses:
+        204:
+          description: Successfully logs out the user
+        403:
+          description: User is not logged in
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              example:
+                code: 104
+                message: User is not logged in
+      security:
+      - cookieAuth: []
+      x-swagger-router-controller: User
+  /authors:
+    get:
+      tags:
+      - author
+      description: |
+        Returns an array with all the authors.
+      operationId: getAllAuthors
+      responses:
+        200:
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Author'
+                x-content-type: application/json
+      x-swagger-router-controller: Author
+  /authors/{id}:
+    get:
+      tags:
+      - author
+      description: Returns the details of a specific author
+      operationId: getAuthor
+      parameters:
+      - name: id
+        in: path
+        description: The author ID
+        required: true
+        style: simple
+        explode: false
+        schema:
+          minimum: 1
+          type: integer
+      responses:
+        200:
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Author'
+        404:
+          description: Author not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              example:
+                code: 201
+                message: Author not found
+      x-swagger-router-controller: Author
+  /themes:
+    get:
+      tags:
+      - theme
+      description: Returns an array with all the themes.
+      operationId: getAllThemes
+      responses:
+        200:
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Theme'
+                x-content-type: application/json
+      x-swagger-router-controller: Theme
+  /themes/{id}:
+    get:
+      tags:
+      - theme
+      description: Returns the details of a specific theme.
+      operationId: getTheme
+      parameters:
+      - name: id
+        in: path
+        description: The theme ID
+        required: true
+        style: simple
+        explode: false
+        schema:
+          minimum: 1
+          type: integer
+      responses:
+        200:
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Theme'
+        404:
+          description: Theme not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              example:
+                code: 301
+                message: Theme not found
+      x-swagger-router-controller: Theme
+  /genres:
+    get:
+      tags:
+      - genre
+      description: Returns an array with all the genres.
+      operationId: getAllGenres
+      responses:
+        200:
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Genre'
+                x-content-type: application/json
+      x-swagger-router-controller: Genre
+  /genres/{id}:
+    get:
+      tags:
+      - genre
+      description: Returns the details of a specific genre and books with that genre
+      operationId: getGenre
+      parameters:
+      - name: id
+        in: path
+        description: The genre ID
+        required: true
+        style: simple
+        explode: false
+        schema:
+          minimum: 1
+          type: integer
+      responses:
+        200:
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Genre'
+        404:
+          description: Genre not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              example:
+                code: 401
+                message: Genre not found
+      x-swagger-router-controller: Genre
+  /books:
+    get:
+      tags:
+      - book
+      description: Returns an array with all the books.
+      operationId: getAllBooks
+      responses:
+        200:
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Book'
+                x-content-type: application/json
+      x-swagger-router-controller: Book
+  /books/{id}:
+    get:
+      tags:
+      - book
+      description: Returns the details of a specific book.
+      operationId: getBook
+      parameters:
+      - name: id
+        in: path
+        description: The book ID
+        required: true
+        style: simple
+        explode: false
+        schema:
+          minimum: 1
+          type: integer
+      responses:
+        200:
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Book'
+        404:
+          description: Book not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              example:
+                code: 501
+                message: Book not found
+      x-swagger-router-controller: Book
+  /events:
+    get:
+      tags:
+      - event
+      description: Returns an array with all the events.
+      operationId: getAllEvents
+      parameters:
+      - name: month
+        in: query
+        description: The month of the events
+        required: false
+        style: form
+        explode: true
+        schema:
+          maximum: 12
+          minimum: 1
+          type: integer
+      responses:
+        200:
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Event'
+                x-content-type: application/json
+        422:
+          description: Input error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              example:
+                code: 781
+                message: Month parameter is not valid
+      x-swagger-router-controller: Event
+  /events/{id}:
+    get:
+      tags:
+      - event
+      description: Returns the details of a specific event.
+      operationId: getEvent
+      parameters:
+      - name: id
+        in: path
+        description: The event ID
+        required: true
+        style: simple
+        explode: false
+        schema:
+          minimum: 1
+          type: integer
+      responses:
+        200:
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Event'
+        404:
+          description: Event not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              example:
+                code: 701
+                message: Event not found
+      x-swagger-router-controller: Event
+  /reviews/{id}:
+    get:
+      tags:
+      - review
+      description: Returns the details of a specific review.
+      operationId: getReview
+      parameters:
+      - name: id
+        in: path
+        description: The review ID
+        required: true
+        style: simple
+        explode: false
+        schema:
+          minimum: 1
+          type: integer
+      responses:
+        200:
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Review'
+        404:
+          description: Review not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              example:
+                code: 801
+                message: Review not found
+      x-swagger-router-controller: Review
+  /cart:
+    get:
+      tags:
+      - cart
+      description: Returns the details of the logged user's cart.
+      operationId: getCart
+      parameters:
+      - name: id
+        in: path
+        description: The cart ID
+        required: true
+        style: simple
+        explode: false
+        schema:
+          minimum: 1
+          type: integer
+      responses:
+        200:
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Cart'
+        403:
+          description: User is not logged in
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              example:
+                code: 602
+                message: User is not logged in
+        404:
+          description: Cart not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              example:
+                code: 601
+                message: Cart not found
+      security:
+      - cookieAuth: []
+      x-swagger-router-controller: Cart
+    put:
+      tags:
+      - cart
+      description: |
+        Adds a book to the logged user's cart with the given quantity.  If the book is already in the cart an error is returned.
+      operationId: addBookToCart
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BookQuantity'
+        required: true
+      responses:
+        204:
+          description: Success
+        400:
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              example:
+                code: 681
+                message: There is no book with the specified id
+        403:
+          description: User is not logged in
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              example:
+                code: 602
+                message: User is not logged in
+      security:
+      - cookieAuth: []
+      x-swagger-router-controller: Cart
+    delete:
+      tags:
+      - cart
+      description: |
+        Remove all the books from the cart.
+      operationId: deleteAllBooks
+      responses:
+        200:
+          description: Success
+        403:
+          description: User is not logged in
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              example:
+                code: 602
+                message: User is not logged in
+      security:
+      - cookieAuth: []
+      x-swagger-router-controller: Cart
+    patch:
+      tags:
+      - cart
+      description: |
+        Modify the quantity of a book in the user's cart. If the book is not present in the cart, an error is returned.
+      operationId: modifyBookQuantity
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BookQuantity'
+        required: true
+      responses:
+        204:
+          description: Success
+        400:
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              example:
+                code: 681
+                message: There is no book with the specified id
+        403:
+          description: User is not logged in
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              example:
+                code: 602
+                message: User is not logged in
+      security:
+      - cookieAuth: []
+      x-swagger-router-controller: Cart
+components:
+  schemas:
+    User:
+      type: object
+      properties:
+        id:
+          type: integer
+        email:
+          type: string
+          format: email
+        first_name:
+          type: string
+        last_name:
+          type: string
+    Author:
+      type: object
+      properties:
+        id:
+          type: integer
+        first_name:
+          type: string
+        last_name:
+          type: string
+        birthdate:
+          type: string
+          format: date
+        picture:
+          type: string
+        biography:
+          type: string
+        books_ids:
+          type: array
+          items:
+            type: integer
+    Theme:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        books_ids:
+          type: array
+          items:
+            type: integer
+    Genre:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        description:
+          type: string
+        books_ids:
+          type: array
+          items:
+            type: integer
+    Book:
+      type: object
+      properties:
+        id:
+          type: integer
+        publication_date:
+          type: string
+          format: date
+        title:
+          type: string
+        picture:
+          type: string
+        abstract:
+          type: string
+        isbn:
+          type: string
+        number_of_pages:
+          minimum: 1
+          type: integer
+        format:
+          type: string
+          enum:
+          - paper
+          - digital
+        is_favorite:
+          type: boolean
+        author_interview:
+          type: string
+        price:
+          type: integer
+        publishing_house:
+          type: string
+        genre_id:
+          type: integer
+        themes_ids:
+          type: array
+          items:
+            type: integer
+        authors_ids:
+          type: array
+          items:
+            type: integer
+        similar_books_ids:
+          type: array
+          items:
+            type: integer
+        reviews_ids:
+          type: array
+          items:
+            type: integer
+    Event:
+      type: object
+      properties:
+        id:
+          type: integer
+        date:
+          type: string
+          format: date-time
+        name:
+          type: string
+        description:
+          type: string
+        picture:
+          type: string
+        book_id:
+          type: integer
+    Cart:
+      type: object
+      properties:
+        id:
+          type: integer
+        books_quantities:
+          type: array
+          items:
+            $ref: '#/components/schemas/BookQuantity'
+    Review:
+      type: object
+      properties:
+        id:
+          type: integer
+        content:
+          type: string
+        date:
+          type: string
+          format: date-time
+        rating:
+          maximum: 5
+          minimum: 0
+          type: integer
+        user_id:
+          type: integer
+    Error:
+      type: object
+      properties:
+        code:
+          type: integer
+        message:
+          type: string
+    UserRegistration:
+      type: object
+      properties:
+        email:
+          type: string
+          format: email
+        password:
+          type: string
+        first_name:
+          type: string
+        last_name:
+          type: string
+    UserLogin:
+      type: object
+      properties:
+        email:
+          type: string
+          format: email
+        password:
+          type: string
+    BookQuantity:
+      type: object
+      properties:
+        book_id:
+          type: integer
+        quantity:
+          type: integer
+  securitySchemes:
+    cookieAuth:
+      type: apiKey
+      name: user_sid
+      in: cookie
