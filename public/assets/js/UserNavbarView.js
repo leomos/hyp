@@ -16,6 +16,7 @@ UserNavbarView.prototype = {
     this.$userMenu = this.$container.find('#user-menu');
     this.$logoutLink = this.$container.find('#logout-link');
     this.$userSpinner = this.$container.find('#user-spinner');
+    this.$userCart = $('#user-cart');
 
     // setup handlers
     this.getDetailsHandler = this.show.bind(this);
@@ -31,6 +32,7 @@ UserNavbarView.prototype = {
     this.model.startedGetDetailsEvent.attach(this.startedGetDetailsHandler);
     this.model.startedLogoutEvent.attach(this.startedLogoutHandler);
 
+    this.buildCartButton(null);
   },
 
   logoutLink: function() {
@@ -40,6 +42,11 @@ UserNavbarView.prototype = {
   show: function(sender, args) {
     this.$userSpinner.hide();
     this.buildMenu(args.user);
+    this.buildCartButton(args.user);
+  },
+
+  buildCartButton: function(user) {
+    this.$userCart.prop('disabled', !Boolean(user));
   },
 
   buildMenu: function (user) {
