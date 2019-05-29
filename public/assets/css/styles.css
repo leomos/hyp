@@ -1,0 +1,27 @@
+.card-body {
+}
+
+.card-text.d-inline-block.text-truncate {
+  max-width: 150px;
+}
+
+@media (min-width: 1200px) {
+  #nav-container {
+    max-width: 1560px;
+  }
+}
+
+.navbar-nav .nav-link {
+  font-size: 20px;
+}
+
+@media (min-width: 1200px) {
+  .container {
+    max-width: 1500px;
+  }
+}
+
+.row.prova {
+  /*max-height: 100px;*/
+}
+
