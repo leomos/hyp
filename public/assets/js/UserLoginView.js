@@ -42,8 +42,10 @@ UserLoginView.prototype = {
       document.location.href = '/';
     } else if(args.error) {
       console.log(args.error);
-      const message = args.error.message ? args.error.message : 'An error occured';
+      const message = args.error.message ? args.error.message : 'An error occurred';
       this.$loginToastBody.text(message);
+      this.$loginToast.addClass('border');
+      this.$loginToast.addClass('border-danger');
       this.$loginToast.toast('show');
 
       this.$emailInput.addClass('is-invalid');
@@ -52,6 +54,8 @@ UserLoginView.prototype = {
       setTimeout(function() {
         this.$emailInput.removeClass('is-invalid');
         this.$passwordInput.removeClass('is-invalid');
+        this.$loginToast.removeClass('border');
+        this.$loginToast.removeClass('border-danger');
       }.bind(this), 2000);
     }
   },
