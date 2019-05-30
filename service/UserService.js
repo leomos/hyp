@@ -11,6 +11,9 @@ var utils = require('../utils/writer.js');
  **/
 exports.addUser = function(body) {
   return new Promise(async function(resolve, reject) {
+    if(body.password) {
+      body.password = models.User.generateHash(body.password);
+    }
     await models.User.create(body)
       .then(newUser => {
         // ugly hack to remove password field
