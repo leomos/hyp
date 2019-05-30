@@ -5,6 +5,8 @@ var scriptsToLoad = [
   'UserModel.js',
   'UserNavbarView.js',
   'UserNavbarController.js',
+  'UserRegistrationView.js',
+  'UserRegistrationController.js',
 ];
 
 $(function () {
@@ -12,6 +14,9 @@ $(function () {
     var userModel = new UserModel();
     var userNavbarView = new UserNavbarView(userModel);
     var userNavbarController = new UserNavbarController(userModel, userNavbarView);
+    var userRegistrationView = new UserRegistrationView(userModel);
+    var userRegistrationController = new UserRegistrationController(userModel, userRegistrationView);
+
 
     userModel.getDetails();
   });
