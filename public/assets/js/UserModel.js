@@ -5,6 +5,7 @@ var UserModel = function () {
   this.getDetailsEvent = new Event(this);
   this.startedGetDetailsEvent = new Event(this);
   this.startedLogoutEvent = new Event(this);
+  this.registerEvent = new Event(this);
 
   this.init();
 };
@@ -69,5 +70,32 @@ UserModel.prototype = {
           user: this.user,
         });
       }.bind(this));
-  }
+  },
+
+  register: function(email, password, first_name, last_name) {
+    $.ajax({
+      url: '/users',
+      data: JSON.stringify({
+        email: email,
+        password: password,
+        first_name: first_name,
+        last_name: last_name,
+      }),
+      type: 'POST',
+      contentType: 'application/json',
+      dataType: 'json',
+    })
+      .done(function(data) {
+        this.registerEvent.notify({
+          user: data,
+          error: null,
+        });
+      }.bind(this))
+      .fail(function (jqXHR, textStatus, errorThrown) {
+        this.registerEvent.notify({
+          user: null,
+          error: jqXHR.responseJSON,
+        });
+      }.bind(this));
+  },
 };
