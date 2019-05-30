@@ -20,7 +20,7 @@ exports.addUser = function(body) {
         resolve(JSON.stringify(userSafe));
       })
       .catch(err => {
-        const invalidFields = err.errors.map(error => {return error.path});
+        const invalidFields = err.errors.map(error => {return error.path}).filter((elem, pos, arr) => arr.indexOf(elem) == pos);
         console.log(err);
         reject(utils.respondWithCode(400, models.Error(101, 'One or more fields are invalid', {invalidFields})));
       });
