@@ -36,3 +36,9 @@ function getUrlParameter(name) {
   var results = regex.exec(location.search);
   return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
 }
+
+String.prototype.truncateWords = function(n) {
+  const words = this.split(' ');
+  const newWords = words.slice(0, n);
+  return newWords.join(' ');
+};
