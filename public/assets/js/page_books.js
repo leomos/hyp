@@ -15,7 +15,7 @@ $(function () {
     var userNavbarView = new UserNavbarView(userModel);
     var userNavbarController = new UserNavbarController(userModel, userNavbarView);
     var bookModel = new BookModel();
-    var booksView = new BooksView(bookModel);
+    var booksView = new BooksView(bookModel, userModel);
 
     userModel.getDetails();
     bookModel.fetchAllBooks();

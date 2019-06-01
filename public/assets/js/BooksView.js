@@ -1,5 +1,6 @@
-var BooksView = function(model) {
-  this.model = model;
+var BooksView = function(bookModel, userModel) {
+  this.bookModel = bookModel;
+  this.userModel = userModel;
 
   this.init();
 };
@@ -10,14 +11,21 @@ BooksView.prototype = {
     this.$container = $('#books-container');
 
     // setup handlers
+    this.fetchAllBooksHandler = this.buildCardsList.bind(this);
+    this.getDetailsHandler = this.buildCardsList.bind(this);
+    this.logoutHandler = this.buildCardsList.bind(this);
 
     // enable
-    this.model.fetchAllBooksEvent.attach(this.buildCardsList.bind(this));
+    this.bookModel.fetchAllBooksEvent.attach(this.fetchAllBooksHandler);
+    this.userModel.getDetailsEvent.attach(this.getDetailsHandler);
+    this.userModel.logoutEvent.attach(this.logoutHandler);
   },
 
   buildCardsList: function () {
-    const books = this.model.getBooks();
-    console.log(books);
+    const books = this.bookModel.getBooks();
+    const user = this.userModel.getUser();
+
+    this.$container.html('');
     for(var book of books) {
       var newBookCard = '' +
         '<div class="col col-12 col-sm-12 col-md-6 col-lg-4 mb-3">' +
@@ -31,12 +39,21 @@ BooksView.prototype = {
         '     <h6 class="text-muted card-subtitle mb-2">' + book.authors.join(', ') + '</h6>' +
         '     <p class="card-text text-break">' + book.abstract.truncateWords(20) + '...</p>' +
         '    </div>' +
-        '    <div class="card-footer bg-transparent"><a class="card-link" href="#">Add to cart</a><a class="card-link" href="#">Events</a></div>' +
+        '    <div class="card-footer bg-transparent">' + this.createAddToCartLink(user, book.id) + '<a' +
+        ' class="card-link" href="#">Events</a></div>' +
         '   </div>' +
         '  </div>' +
         ' </div>' +
         '</div>';
       this.$container.append(newBookCard);
+    }
+  },
+
+  createAddToCartLink(user, bookId) {
+    if(user) {
+      return '<a class="card-link" href="#">Add to cart</a>';
+    } else {
+      return '<span class="mr-4 text-secondary">Add to cart</span>'
     }
   },
 };
