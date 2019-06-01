@@ -21,32 +21,37 @@
 
 <body>
     <nav class="navbar navbar-dark navbar-expand-md bg-primary">
-        <div class="container">
-            <a class="navbar-brand" href="#">
-                <h3>ebookit</h3>
-            </a><button data-toggle="collapse" class="navbar-toggler" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button><span style="margin-right: 2%;"></span>
-            <div class="collapse navbar-collapse"
-                id="navcol-1">
+        <div class="container"><button data-toggle="collapse" class="navbar-toggler" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+            <a class="navbar-brand" href="/">
+                <h3 class="text-nowrap">ebookit</h3>
+            </a><span style="margin-right: 2%;"></span>
+            <div class="collapse navbar-collapse mb-1" id="navcol-1">
                 <ul class="nav navbar-nav">
-                    <li class="nav-item" role="presentation"><a class="nav-link active" href="#">Books</a></li>
+                    <li class="nav-item" role="presentation"><a class="nav-link" href="/pages/books.html">Books</a></li>
                     <li class="nav-item" role="presentation"><a class="nav-link" href="#">Events</a></li>
+                    <li class="nav-item" role="presentation"><a class="nav-link" href="#">Authors</a></li>
                     <li class="nav-item" role="presentation"><a class="nav-link" href="#">Contacts</a></li>
                     <li class="nav-item" role="presentation"></li>
                     <li class="nav-item" role="presentation"></li>
                 </ul><span class="navbar-text" style="margin-right: auto;"></span>
+                <div></div><div class="dropdown mr-3" id="user-container">
+    <button id="user-button" type="button" class="btn btn-primary dropdown-toggle border" data-toggle="dropdown" data-display="static" aria-haspopup="true" aria-expanded="false">
+        <div id="user-spinner" class="spinner-grow spinner-grow-sm" role="status" style="display:none;">
+          <span class="sr-only">Loading...</span>
+        </div>
+        <span id="user-label" class="p-2">Sign In</span>
+        <i class="fa fa-user"></i>
+    </button>
+    <div id="user-menu" role="menu" class="dropdown-menu">
+        <a role="presentation" class="dropdown-item" href="/pages/login.html">Login</a>
+        <a role="presentation" class="dropdown-item" href="/pages/registration.html">Register</a>
+    </div>
+</div>
                 <ul class="nav navbar-nav">
                     <li class="nav-item" role="presentation"></li>
                     <li class="nav-item" role="presentation"></li>
                     <li class="nav-item" role="presentation"></li>
-                </ul><div class="dropdown mr-3">
-    <button type="button" class="btn btn-primary dropdown-toggle border" data-toggle="dropdown" data-display="static" aria-haspopup="true" aria-expanded="false">
-        <span class="p-2">Sign In</span><i class="fa fa-user"></i>
-    </button>
-    <div role="menu" class="dropdown-menu dropdown-menu-right">
-        <a role="presentation" class="dropdown-item" href="#">Login</a>
-        <a role="presentation" class="dropdown-item" href="#">Register</a>
-    </div>
-</div><button class="btn btn-primary border" type="button">
+                </ul><button id="user-cart" class="btn btn-primary border" type="button">
     <i class="fa fa-shopping-cart"></i>
 </button></div>
         </div>
@@ -55,107 +60,8 @@
         <h2 style="margin-top: 5%;margin-bottom: 4%;">Find here your next reading...</h2>
     </div>
     <div class="container">
-        <div class="row mb-5">
-            <div class="col col-12 col-md-4">
-                <div class="card">
-                    <div class="row no-gutters">
-                        <div class="col-4"><img class="card-img" src="/assets/img/1788282361.jpg" style="max-height: 100%;"></div><div class="col-8 d-flex flex-column">
-    <div class="card-body">
-        <h4 class="card-title">1984</h4>
-        <h6 class="text-muted card-subtitle mb-2">George Orwell</h6>
-        <p class="card-text text-break">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500... </p>
-    </div>
-    <div class="card-footer bg-transparent">
-        <a class="card-link" href="#">Add to cart</a>
-        <a class="card-link" href="#">Events</a>
-    </div>
-</div></div>
-                </div>
-            </div>
-            <div class="col">
-                <div class="card">
-                    <div class="row no-gutters">
-                        <div class="col-4"><img class="card-img" src="/assets/img/81IRwyBIc5L.jpg" style="max-height: 100%;"></div><div class="col-8 d-flex flex-column">
-    <div class="card-body">
-        <h4 class="card-title text-wrap">Factfulness</h4>
-        <h6 class="text-muted card-subtitle mb-2">Hans Rosling</h6>
-        <p class="card-text text-break">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500... </p>
-    </div>
-    <div class="card-footer bg-transparent">
-        <a class="card-link" href="#">Add to cart</a>
-        <a class="card-link" href="#">Events</a>
-    </div>
-</div></div>
-                </div>
-            </div>
-            <div class="col">
-                <div class="card">
-                    <div class="row no-gutters">
-                        <div class="col-4"><img class="card-img" src="/assets/img/1788282361.jpg" style="max-height: 100%;"></div><div class="col-8 d-flex flex-column">
-    <div class="card-body">
-        <h4 class="card-title">1984</h4>
-        <h6 class="text-muted card-subtitle mb-2">George Orwell</h6>
-        <p class="card-text text-break">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500... </p>
-    </div>
-    <div class="card-footer bg-transparent">
-        <a class="card-link" href="#">Add to cart</a>
-        <a class="card-link" href="#">Events</a>
-    </div>
-</div></div>
-                </div>
-            </div>
-        </div>
-        <div class="row prova">
-            <div class="col col-12 col-md-4">
-                <div class="card">
-                    <div class="row no-gutters">
-                        <div class="col-4"><img class="card-img" src="/assets/img/71zHwRhBC0L.jpg" style="max-height: 100%;"></div><div class="col-8 d-flex flex-column">
-    <div class="card-body">
-        <h4 class="card-title">Sapiens</h4>
-        <h6 class="text-muted card-subtitle mb-2">Yuval Noah Harari</h6>
-        <p class="card-text text-break">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500... </p>
-    </div>
-    <div class="card-footer bg-transparent">
-        <a class="card-link" href="#">Add to cart</a>
-        <a class="card-link" href="#">Events</a>
-    </div>
-</div></div>
-                </div>
-            </div>
-            <div class="col">
-                <div class="card h-100">
-                    <div class="row no-gutters h-100">
-                        <div class="col-4"><img class="card-img" src="/assets/img/1788282361.jpg" style="max-height: 100%;"></div><div class="col-8 d-flex flex-column">
-    <div class="card-body">
-        <h4 class="card-title">1984</h4>
-        <h6 class="text-muted card-subtitle mb-2">George Orwell</h6>
-        <p class="card-text text-break">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500... </p>
-    </div>
-    <div class="card-footer bg-transparent">
-        <a class="card-link" href="#">Add to cart</a>
-        <a class="card-link" href="#">Events</a>
-    </div>
-</div></div>
-                </div>
-            </div>
-            <div class="col">
-                <div class="card">
-                    <div class="row no-gutters">
-                        <div class="col-4"><img class="card-img" src="/assets/img/1788282361.jpg" style="max-height: 100%;"></div><div class="col-8 d-flex flex-column">
-    <div class="card-body">
-        <h4 class="card-title">1984</h4>
-        <h6 class="text-muted card-subtitle mb-2">George Orwell</h6>
-        <p class="card-text text-break">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500... </p>
-    </div>
-    <div class="card-footer bg-transparent">
-        <a class="card-link" href="#">Add to cart</a>
-        <a class="card-link" href="#">Events</a>
-    </div>
-</div></div>
-                </div>
-            </div>
-        </div>
-    </div>
+        <div class="row" id="books-container"></div>
+    </div><script src="/assets/js/page_books.js" defer="defer"></script>
     <script src="/assets/js/jquery.min.js"></script>
     <script src="/assets/bootstrap/js/bootstrap.min.js"></script>
     <script src="/assets/js/jquery.loadscript.js"></script>
