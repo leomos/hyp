@@ -7,13 +7,9 @@ var UserModel = function () {
   this.startedLogoutEvent = new Event(this);
   this.registerEvent = new Event(this);
 
-  this.init();
 };
 
 UserModel.prototype = {
-
-  init: function() {
-  },
   
   login: function (email, password) {
     $.ajax({
