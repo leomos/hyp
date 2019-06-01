@@ -10,6 +10,10 @@ var UserModel = function () {
 };
 
 UserModel.prototype = {
+
+  getUser: function() {
+    return this.user;
+  },
   
   login: function (email, password) {
     $.ajax({
@@ -23,6 +27,7 @@ UserModel.prototype = {
       dataType: 'json',
     })
       .done(function(data) {
+        this.user = data;
         this.loginEvent.notify({
           user: data,
           error: null,
@@ -30,6 +35,7 @@ UserModel.prototype = {
         this.getDetails();
       }.bind(this))
       .fail(function (jqXHR, textStatus, errorThrown) {
+        this.user = null;
         this.loginEvent.notify({
           user: null,
           error: jqXHR.responseJSON,
@@ -39,6 +45,7 @@ UserModel.prototype = {
 
   logout: function () {
     this.startedLogoutEvent.notify();
+    this.user = null;
     /**
      * We use always because, even if the request was not
      * fine on the server side, we still want to be logged out
