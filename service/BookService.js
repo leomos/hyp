@@ -4,7 +4,7 @@ var models = require('../models');
 var utils = require('../utils/writer.js');
 
 const cleanSimilarBooks = (book) => {
-  let newBook = book.withAssociationsIds(['Authors','Themes','Reviews']);
+  let newBook = book.withAssociationsIds(['Authors','Themes','Reviews','Events']);
   newBook['similar_books_ids'] = new Array();
   newBook['similar_books_ids'] = newBook['similar_books_ids'].concat(newBook.book1.map(similarBook => similarBook.id));
   newBook['similar_books_ids'] = newBook['similar_books_ids'].concat(newBook.book2.map(similarBook => similarBook.id));
@@ -33,6 +33,8 @@ exports.getAllBooks = function() {
         model: models.Theme,
       },{
         model: models.Review,
+      },{
+        model: models.Event,
       }]
     })
       .then(books => {
@@ -68,6 +70,8 @@ exports.getBook = function(id) {
           model: models.Theme,
         },{
           model: models.Review,
+        },{
+          model: models.Event,
         }]
       })
         .then(book => {

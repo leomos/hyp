@@ -633,6 +633,10 @@ definitions:
         items:
           type: integer
         type: array
+      events_ids:
+        items:
+          type: integer
+        type: array
       title:
         type: string
     type: object
