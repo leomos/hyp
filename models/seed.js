@@ -12,13 +12,29 @@ const seedUsers = (m) => {
       first_name: 'John',
       last_name: 'Doe',
     }),
+    m.User.create({
+      email: 'gianni@example.org',
+      password: m.User.generateHash('password'),
+      first_name: 'Gianni',
+      last_name: 'Rossi',
+    }),
+    m.User.create({
+      email: 'laura@example.org',
+      password: m.User.generateHash('password'),
+      first_name: 'Laura',
+      last_name: 'Gregori',
+    }),
   ])
     .then(([
       user_leonardo,
       user_admin,
+      user_gianni,
+      user_laura,
            ]) => { return {
       user_leonardo,
       user_admin,
+      user_gianni,
+      user_laura,
     }})
 };
 
@@ -68,14 +84,14 @@ const seedGenres = (m) => {
     }),
   ])
     .then(([
-      genre_fatasy,
+      genre_fantasy,
       genre_scifi,
       genre_dystopia,
       genre_thriller,
       genre_novel,
       genre_essay
            ]) => { return {
-      genre_fatasy,
+      genre_fantasy,
       genre_scifi,
       genre_dystopia,
       genre_thriller,
@@ -136,6 +152,29 @@ const seedAuthors = (m) => {
       birthdate: new Date(1867, 5, 28),
       picture: 'follett.jpg'
     }),
+    m.Author.create({
+      first_name: 'Thomas',
+      last_name: 'Cormen',
+      biography: 'Thomas H. Cormen is Professor and former Chair of the Dartmouth College Department of ' +
+        'Computer Science and former director of the Dartmouth College Institute for Writing and Rhetoric. ' +
+        'He received the B.S.E. degree in Electrical Engineering and Computer Science from Princeton University ' +
+        'in 1978 and the S.M. and Ph.D. degrees in Electrical Engineering and Computer Science from MIT in ' +
+        '1986 and 1993, respectively. He is coauthor of the leading textbook on computer algorithms, ' +
+        'Introduction to Algorithms, which he wrote with Charles E. Leiserson, Ronald L. Rivest, and Clifford Stein.' +
+        ' The book, now in its third edition, has been translated into several languages. He is also the ' +
+        'author of Algorithms Unlocked, a gentle introduction to understanding computer algorithms and how they ' +
+        'relate to real-world problems.',
+      birthdate: new Date(1956, 5, 28),
+      picture: 'cormen.jpg'
+    }),
+    m.Author.create({
+      first_name: 'Charles',
+      last_name: 'Leiserson',
+      biography: 'Charles E. Leiserson is Professor of Computer Science and Engineering at the ' +
+        'Massachusetts Institute of Technology.',
+      birthdate: new Date(1956, 10, 10),
+      picture: 'leiserson.jpg'
+    }),
 
   ])
     .then(([
@@ -144,12 +183,16 @@ const seedAuthors = (m) => {
       author_eco,
       author_follett,
       author_pirandello,
+      author_cormen,
+      author_leiserson,
            ]) => { return {
       author_orwell,
       author_hemingway,
       author_eco,
       author_follett,
       author_pirandello,
+      author_cormen,
+      author_leiserson,
     }})
 };
 
@@ -173,6 +216,9 @@ const seedThemes = (m) => {
     m.Theme.create({
       name: 'justice',
     }),
+    m.Theme.create({
+      name: 'science',
+    }),
   ])
     .then(([
       theme_peace,
@@ -181,6 +227,7 @@ const seedThemes = (m) => {
       theme_death,
       theme_friendship,
       theme_justice,
+      theme_science,
            ]) => { return {
       theme_peace,
       theme_war,
@@ -188,6 +235,7 @@ const seedThemes = (m) => {
       theme_death,
       theme_friendship,
       theme_justice,
+      theme_science,
     }})
 };
 
@@ -392,6 +440,25 @@ const seedBooks = (m) => {
       price: 390,
       publishing_house: 'Newton Compton',
     }),
+    m.Book.create({
+      publication_date: new Date(2009, 6, 31),
+      title: 'Introduction to Algorithms',
+      picture: 'algorithms.jpg',
+      abstract: 'Some books on algorithms are rigorous but incomplete; others cover masses of material but lack ' +
+        'rigor. Introduction to Algorithms uniquely combines rigor and comprehensiveness. The book covers ' +
+        'a broad range of algorithms in depth, yet makes their design and analysis accessible to all levels ' +
+        'of readers. Each chapter is relatively self-contained and can be used as a unit of study. ' +
+        'The algorithms are described in English and in a pseudocode designed to be readable by anyone who has ' +
+        'done a little programming. The explanations have been kept elementary without sacrificing depth ' +
+        'of coverage or mathematical rigor.',
+      isbn: '9780262033848',
+      number_of_pages: 1320,
+      format: 'paper',
+      is_favorite: false,
+      author_interview: null,
+      price: 8910,
+      publishing_house: 'The MIT Press',
+    }),
   ])
     .then(([
       book_1984,
@@ -399,27 +466,61 @@ const seedBooks = (m) => {
       book_nomerosa,
       book_pillars,
       book_mattiapascal,
+      book_algorithms,
            ]) => { return {
       book_1984,
       book_oldmansea,
       book_nomerosa,
       book_pillars,
       book_mattiapascal,
+      book_algorithms,
     }})
 };
 
+const loremIpsumForEvent = ' Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sit amet erat nunc. Etiam' +
+  ' eu vestibulum ante, vitae vehicula lectus. Ut finibus fermentum diam eu commodo. Pellentesque turpis ' +
+  'magna, cursus nec magna eu, tempor pulvinar nisl. Nam cursus semper turpis hendrerit tempus. ' +
+  'Vestibulum pharetra nulla tortor, non ornare lectus condimentum.  Lorem ipsum dolor sit amet, consectetur ' +
+  'adipiscing elit. Sed sit amet erat nunc. Etiam eu vestibulum ante, vitae vehicula lectus. Ut finibus ' +
+  'fermentum diam eu commodo. Pellentesque turpis magna, cursus nec magna eu, tempor pulvinar nisl. Nam ' +
+  'cursus semper turpis hendrerit tempus. Vestibulum pharetra nulla tortor, non ornare lectus condimentum. ';
 const seedEvents = (m) => {
   return Promise.all([
     m.Event.create({
       date: new Date(Date.UTC(2019, 6, 4, 12)),
       name: 'Nineteen Eighty-Four: are we living in a dystopian society?',
-      description: 'A rant about current police-state nations.'
+      description: 'A rant about current police-state nations.',
+      picture: '1984_e1.jpg',
+    }),
+    m.Event.create({
+      date: new Date(Date.UTC(2019, 2, 13, 10)),
+      name: 'The Orwellian Catastrophe: Is Privacy Really Threatened?',
+      description: loremIpsumForEvent,
+      picture: '1984_e2.jpg',
+    }),
+    m.Event.create({
+      date: new Date(Date.UTC(2019, 10, 28, 12)),
+      name: 'Applying the Old Man and the Sea\'s lessons to you daily life',
+      description: loremIpsumForEvent,
+      picture: 'old-man-sea_e1.jpg',
+    }),
+    m.Event.create({
+      date: new Date(Date.UTC(2019, 8, 12, 15)),
+      name: 'The Pillars of our contemporary life',
+      description: loremIpsumForEvent,
+      picture: 'pillars-of-earth_e1.jpg',
     }),
   ])
     .then(([
-      event_1984
+      event_1984_e1,
+      event_1984_e2,
+      event_oldmansea_e1,
+      event_pillars_e1,
            ]) => { return {
-      event_1984
+      event_1984_e1,
+      event_1984_e2,
+      event_oldmansea_e1,
+      event_pillars_e1,
     }})
 };
 
@@ -467,13 +568,54 @@ module.exports = seed = (m) => {
 
         books.book_1984.setGenre(genres.genre_dystopia),
         books.book_1984.addAuthor(authors.author_orwell),
-        books.book_1984.addThemes([themes.theme_love, themes.theme_justice]),
+        books.book_1984.addThemes([themes.theme_love, themes.theme_justice, themes.theme_war]),
+        events.event_1984_e1.setBook(books.book_1984),
+        events.event_1984_e2.setBook(books.book_1984),
+        reviews.reviews[0].setBook(books.book_1984),
+        reviews.reviews[0].setUser(users.user_leonardo),
+        reviews.reviews[1].setBook(books.book_1984),
+        reviews.reviews[1].setUser(users.user_admin),
+
+        books.book_nomerosa.setGenre(genres.genre_novel),
+        books.book_nomerosa.addAuthor(authors.author_eco),
+        books.book_nomerosa.addThemes([themes.theme_love, themes.theme_justice]),
         books.book_nomerosa.addBook1(books.book_1984),
+        reviews.reviews[2].setBook(books.book_nomerosa),
+        reviews.reviews[2].setUser(users.user_gianni),
 
-        events.event_1984.setBook(books.book_1984),
+        books.book_mattiapascal.setGenre(genres.genre_novel),
+        books.book_mattiapascal.addAuthor(authors.author_pirandello),
+        books.book_mattiapascal.addThemes([themes.theme_love, themes.theme_friendship, themes.theme_death]),
+        books.book_nomerosa.addBook1(books.book_oldmansea),
+        reviews.reviews[3].setBook(books.book_mattiapascal),
+        reviews.reviews[3].setUser(users.user_laura),
+        reviews.reviews[4].setBook(books.book_mattiapascal),
+        reviews.reviews[4].setUser(users.user_leonardo),
 
+        books.book_oldmansea.setGenre(genres.genre_novel),
+        books.book_oldmansea.addAuthor(authors.author_hemingway),
+        books.book_oldmansea.addThemes([themes.theme_friendship, themes.theme_peace]),
+        events.event_oldmansea_e1.setBook(books.book_oldmansea),
+        reviews.reviews[5].setBook(books.book_oldmansea),
+        reviews.reviews[5].setUser(users.user_admin),
+        reviews.reviews[6].setBook(books.book_oldmansea),
+        reviews.reviews[6].setUser(users.user_gianni),
 
+        books.book_pillars.setGenre(genres.genre_thriller),
+        books.book_pillars.addAuthor(authors.author_follett),
+        books.book_pillars.addThemes([themes.theme_friendship, themes.theme_love]),
+        books.book_nomerosa.addBook1(books.book_nomerosa),
+        events.event_pillars_e1.setBook(books.book_pillars),
+        reviews.reviews[7].setBook(books.book_pillars),
+        reviews.reviews[7].setUser(users.user_laura),
 
+        books.book_algorithms.setGenre(genres.genre_essay),
+        books.book_algorithms.addAuthors([authors.author_cormen, authors.author_leiserson]),
+        books.book_algorithms.addThemes([themes.theme_science]),
+        reviews.reviews[8].setBook(books.book_algorithms),
+        reviews.reviews[8].setUser(users.user_leonardo),
+        reviews.reviews[9].setBook(books.book_algorithms),
+        reviews.reviews[9].setUser(users.user_gianni),
       ])
     })
     .catch(error => console.log(error));
