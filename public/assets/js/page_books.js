@@ -5,8 +5,9 @@ var scriptsToLoad = [
   'UserModel.js',
   'UserNavbarView.js',
   'UserNavbarController.js',
-  'BookModel.js',
-  'BooksView.js'
+  'BooksModel.js',
+  'BooksView.js',
+  'BooksController.js',
 ];
 
 $(function () {
@@ -14,10 +15,11 @@ $(function () {
     var userModel = new UserModel();
     var userNavbarView = new UserNavbarView(userModel);
     var userNavbarController = new UserNavbarController(userModel, userNavbarView);
-    var bookModel = new BookModel();
-    var booksView = new BooksView(bookModel, userModel);
+    var booksModel = new BooksModel();
+    var booksView = new BooksView(booksModel, userModel);
+    var booksController = new BooksController(booksModel, booksView);
 
     userModel.getDetails();
-    bookModel.fetchAllBooks();
+    booksModel.fetchAllBooks();
   });
 });

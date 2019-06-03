@@ -39,8 +39,8 @@ BooksView.prototype = {
         '     <h6 class="text-muted card-subtitle mb-2">' + book.authors.join(', ') + '</h6>' +
         '     <p class="card-text text-break">' + book.abstract.truncateWords(20) + '...</p>' +
         '    </div>' +
-        '    <div class="card-footer bg-transparent">' + this.createAddToCartLink(user, book.id) + '<a' +
-        ' class="card-link" href="#">Events</a></div>' +
+        '    <div class="card-footer bg-transparent">' + this.createAddToCartLink(user, book.id) +
+             (book.hasEvents ? '<a class="card-link" href="#">Events</a>' : '') + '</div>' +
         '   </div>' +
         '  </div>' +
         ' </div>' +

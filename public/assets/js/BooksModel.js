@@ -1,10 +1,10 @@
-var BookModel = function() {
+var BooksModel = function() {
   this.books = [];
   this.error = null;
   this.fetchAllBooksEvent = new Event(this);
 };
 
-BookModel.prototype = {
+BooksModel.prototype = {
 
   getBooks: function() {
     return this.books;
@@ -22,6 +22,7 @@ BookModel.prototype = {
             authors: authorsArguments[0]
               .filter(author => book.authors_ids.indexOf(author.id) > -1)
               .map(bookAuthor => bookAuthor.first_name + ' ' + bookAuthor.last_name),
+            hasEvents: book.events_ids.length > 0,
           }
         });
         this.books = data;
