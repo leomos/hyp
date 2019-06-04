@@ -13,15 +13,15 @@ BooksModel.prototype = {
   fetchAllBooks: function () {
     $.when($.get('/books'), $.get('/authors'))
       .done(function(booksArguments, authorsArguments) {
-        const data = booksArguments[0].map(book => {
+        const data = booksArguments[0].map(function(book){
           return {
             id: book.id,
             title: book.title,
             abstract: book.abstract,
             picture: book.picture,
             authors: authorsArguments[0]
-              .filter(author => book.authors_ids.indexOf(author.id) > -1)
-              .map(bookAuthor => bookAuthor.first_name + ' ' + bookAuthor.last_name),
+              .filter(function(author){return book.authors_ids.indexOf(author.id) > -1})
+              .map(function(bookAuthor){return bookAuthor.first_name + ' ' + bookAuthor.last_name}),
             hasEvents: book.events_ids.length > 0,
           }
         });
