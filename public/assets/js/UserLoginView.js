@@ -42,7 +42,7 @@ UserLoginView.prototype = {
       document.location.href = '/';
     } else if(args.error) {
       console.log(args.error);
-      const message = args.error.message ? args.error.message : 'An error occurred';
+      var message = args.error.message ? args.error.message : 'An error occurred';
       this.$loginToastBody.text(message);
       this.$loginToast.addClass('border');
       this.$loginToast.addClass('border-danger');

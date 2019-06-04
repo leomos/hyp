@@ -8,7 +8,7 @@ var scriptsToLoad = [
 ];
 
 $(function () {
-  $.when.apply($, scriptsToLoad.map(scriptToLoad => $.loadScript('/assets/js/'+scriptToLoad))).done(function () {
+  $.when.apply($, scriptsToLoad.map(function(scriptToLoad){return $.loadScript('/assets/js/'+scriptToLoad)})).done(function () {
     var userModel = new UserModel();
     var userNavbarView = new UserNavbarView(userModel);
     var userNavbarController = new UserNavbarController(userModel, userNavbarView);

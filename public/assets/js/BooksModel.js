@@ -13,7 +13,7 @@ BooksModel.prototype = {
   fetchAllBooks: function () {
     $.when($.get('/books'), $.get('/authors'))
       .done(function(booksArguments, authorsArguments) {
-        const data = booksArguments[0].map(function(book){
+        var data = booksArguments[0].map(function(book){
           return {
             id: book.id,
             title: book.title,

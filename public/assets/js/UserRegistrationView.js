@@ -64,13 +64,13 @@ UserRegistrationView.prototype = {
       }.bind(this), 2000);
 
     } else if(args.error) {
-      const error = args.error;
+      var error = args.error;
       this.$registrationToastBody.text(error.message);
       this.$registrationToast.addClass('border border-danger');
       this.$registrationToast.toast('show');
 
       if(error.details && error.details.invalidFields) {
-        let invalidatedInputs = error.details.invalidFields.map(invalidField => {
+        var invalidatedInputs = error.details.invalidFields.map(function(invalidField){
           switch(invalidField) {
             case 'email':
               return this.$emailInput;
@@ -85,16 +85,16 @@ UserRegistrationView.prototype = {
               return this.$surnameInput;
               break;
           }
+        }.bind(this));
+
+        invalidatedInputs.forEach(function(invalidatedInput) {
+          invalidatedInput.addClass('is-invalid');
         });
 
-        for(let invalidatedInput of invalidatedInputs) {
-          invalidatedInput.addClass('is-invalid');
-        }
-
         setTimeout(function() {
-          for(let invalidatedInput of invalidatedInputs) {
+          invalidatedInputs.forEach(function(invalidatedInput) {
             invalidatedInput.removeClass('is-invalid');
-          }
+          });
           this.$registrationToast.removeClass('border border-danger');
         }.bind(this), 2000);
       }
@@ -114,7 +114,7 @@ UserRegistrationView.prototype = {
     if(args.user) {
       document.location.href = '/';
     } else if(args.error) {
-      const message = args.error.message ? args.error.message : 'An error occurred';
+      var message = args.error.message ? args.error.message : 'An error occurred';
       this.$loginToastBody.text(message);
       this.$loginToast.toast('show');
 

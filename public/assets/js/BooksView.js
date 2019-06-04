@@ -22,11 +22,11 @@ BooksView.prototype = {
   },
 
   buildCardsList: function () {
-    const books = this.bookModel.getBooks();
-    const user = this.userModel.getUser();
+    var books = this.bookModel.getBooks();
+    var user = this.userModel.getUser();
 
     this.$container.html('');
-    for(var book of books) {
+    books.forEach(function(book){
       var newBookCard = '' +
         '<div class="col col-12 col-sm-12 col-md-6 col-lg-4 mb-3">' +
         ' <div class="card h-100">' +
@@ -46,10 +46,10 @@ BooksView.prototype = {
         ' </div>' +
         '</div>';
       this.$container.append(newBookCard);
-    }
+    }.bind(this));
   },
 
-  createAddToCartLink(user, bookId) {
+  createAddToCartLink: function(user, bookId) {
     if(user) {
       return '<a class="card-link" href="#">Add to cart</a>';
     } else {
