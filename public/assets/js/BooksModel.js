@@ -23,6 +23,8 @@ BooksModel.prototype = {
               .filter(function(author){return book.authors_ids.indexOf(author.id) > -1})
               .map(function(bookAuthor){return bookAuthor.first_name + ' ' + bookAuthor.last_name}),
             hasEvents: book.events_ids.length > 0,
+            genre_id: book.genre_id,
+            themes_ids: book.themes_ids,
           }
         });
         this.books = data;
