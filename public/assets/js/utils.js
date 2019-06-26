@@ -38,7 +38,7 @@ function getUrlParameter(name) {
 }
 
 String.prototype.truncateWords = function(n) {
-  const words = this.split(' ');
-  const newWords = words.slice(0, n);
+  var words = this.split(' ');
+  var newWords = words.slice(0, n);
   return newWords.join(' ');
 };
