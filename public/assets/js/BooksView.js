@@ -58,6 +58,7 @@ BooksView.prototype = {
         '     <p class="card-text text-break">' + book.abstract.truncateWords(20) + '...</p>' +
         '    </div>' +
         '    <div class="card-footer bg-transparent">' + this.createAddToCartLink(user, book.id) +
+        //TODO: event's link
              (book.hasEvents ? '<a class="card-link" href="#">Events</a>' : '') + '</div>' +
         '   </div>' +
         '  </div>' +
@@ -69,6 +70,7 @@ BooksView.prototype = {
 
   createAddToCartLink: function(user, bookId) {
     if(user) {
+      //TODO: cart logic
       return '<a class="card-link" href="#">Add to cart</a>';
     } else {
       return '<span class="mr-4 text-secondary">Add to cart</span>'
