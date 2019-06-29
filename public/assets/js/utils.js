@@ -42,3 +42,7 @@ String.prototype.truncateWords = function(n) {
   var newWords = words.slice(0, n);
   return newWords.join(' ');
 };
+
+String.prototype.capitalizeFirstLetter = function () {
+  return this.charAt(0).toUpperCase() + this.slice(1);
+};
