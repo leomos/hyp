@@ -8,6 +8,9 @@ var scriptsToLoad = [
   'BooksModel.js',
   'BooksView.js',
   'BooksController.js',
+  'BookFilterModel.js',
+  'BookFilterView.js',
+  'BookFilterController.js',
 ];
 
 $(function () {
@@ -15,11 +18,16 @@ $(function () {
     var userModel = new UserModel();
     var userNavbarView = new UserNavbarView(userModel);
     var userNavbarController = new UserNavbarController(userModel, userNavbarView);
+    var bookFilterModel = new BookFilterModel();
+    var bookFilterView = new BookFilterView(bookFilterModel);
+    var bookFilterController = new BookFilterController(bookFilterModel, bookFilterView);
     var booksModel = new BooksModel();
-    var booksView = new BooksView(booksModel, userModel);
+    var booksView = new BooksView(booksModel, userModel, bookFilterModel);
     var booksController = new BooksController(booksModel, booksView);
 
+
     userModel.getDetails();
+    bookFilterModel.fetchAvailableFilters();
     booksModel.fetchAllBooks();
   });
 });

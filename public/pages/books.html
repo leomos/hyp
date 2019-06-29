@@ -57,7 +57,25 @@
         </div>
     </nav>
     <div class="container">
-        <h2 style="margin-top: 5%;margin-bottom: 4%;">Find here your next reading...</h2>
+        <h2 style="margin-top: 5%;margin-bottom: 2%;">Find here your next reading...</h2>
+        <div class="row">
+            <div class="col-xl-12 d-flex mb-4" id="dropdowns-container">
+                <div class="dropdown mr-2" id="dropdown-genres"><button class="btn btn-primary dropdown-toggle text-left" data-toggle="dropdown" aria-expanded="false" type="button">Genres</button>
+                    <div class="dropdown-menu text-nowrap" role="menu">
+                        <form id="dropdown-genres-form" class="px-3 py-1">
+                            <div class="form-check py-1"><input class="form-check-input" type="checkbox" id="checkbok-all-genres"><label class="form-check-label" for="checkbok-all-genres">All literary genres</label></div>
+                        </form>
+                    </div>
+                </div>
+                <div class="dropdown" id="dropdown-themes"><button class="btn btn-primary dropdown-toggle text-left mr-2" data-toggle="dropdown" aria-expanded="false" type="button">Themes</button>
+                    <div class="dropdown-menu text-nowrap" role="menu">
+                        <form id="dropdown-themes-form" class="px-3 py-1">
+                            <div class="form-check py-1"><input class="form-check-input" type="checkbox" id="checkbox-all-themes"><label class="form-check-label" for="checkbox-all-themes">All literary themes</label></div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
     <div class="container">
         <div class="row" id="books-container"></div>
