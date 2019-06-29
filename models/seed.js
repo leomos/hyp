@@ -100,57 +100,146 @@ const seedGenres = (m) => {
     }})
 };
 
-const loremIpsumForBiography = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nulla nisi, ' +
-  'sagittis at varius non, tincidunt ut lacus. Cras aliquam at velit ut suscipit. Donec pharetra felis ' +
-  'blandit, imperdiet lacus ut, tristique metus. Mauris imperdiet, ex vulputate sagittis tincidunt, lorem ' +
-  'eros sollicitudin erat, a sodales eros felis in nisi. Mauris nulla nulla, pretium vel sapien at, laoreet ' +
-  'fringilla velit. Suspendisse metus massa, posuere in ex vitae, posuere dictum urna. Etiam ornare dui ' +
-  'nec leo varius ultricies. Morbi sem eros, fermentum vitae odio sit amet, lacinia vehicula elit. Praesent ' +
-  'facilisis quis mauris ut aliquet. Aliquam congue tortor erat, condimentum placerat mauris finibus interdum. ' +
-  'Aliquam fermentum fermentum orci, sit amet varius metus laoreet et. Praesent eu diam non metus ' +
-  'consequat pulvinar sed non ante.\n' +
-  '\n' +
-  'Mauris et egestas elit. Quisque mattis finibus arcu in congue. Duis lobortis eros sed eleifend viverra. Morbi a' +
-  ' mauris aliquet, consequat augue sed, aliquam massa. Aliquam eget erat at leo tincidunt imperdiet. ' +
-  'Praesent eget lobortis augue. Maecenas vehicula eget tortor vel condimentum. Maecenas posuere orci id magna ' +
-  'maximus ullamcorper. Nam ac diam urna. Praesent posuere sapien metus, nec consequat massa condimentum id.' +
-  ' Phasellus vel porttitor eros, eu porttitor sapien. Curabitur a mattis purus. Etiam lobortis non arcu eget. ';
 const seedAuthors = (m) => {
   return Promise.all([
     m.Author.create({
       first_name: 'George',
       last_name: 'Orwell',
-      biography: loremIpsumForBiography,
+      biography: 'Orwell was born Eric Arthur Blair on 25 June 1903 in eastern India, the son of a British ' +
+        'colonial civil servant. He was educated in England and, after he left Eton, joined the Indian ' +
+        'Imperial Police in Burma, then a British colony. He resigned in 1927 and decided to become a writer. ' +
+        'In 1928, he moved to Paris where lack of success as a writer forced him into a series of menial jobs. ' +
+        'He described his experiences in his first book, \'Down and Out in Paris and London\', published in 1933. ' +
+        'He took the name George Orwell, shortly before its publication. ' +
+        'This was followed by his first novel, \'Burmese Days\', in 1934.\n' +
+        '\n' +
+        'An anarchist in the late 1920s, by the 1930s he had begun to consider himself a socialist. ' +
+        'In 1936, he was commissioned to write an account of poverty among unemployed miners in northern England, ' +
+        'which resulted in \'The Road to Wigan Pier\' (1937). Late in 1936, Orwell travelled to Spain to fight ' +
+        'for the Republicans against Franco\'s Nationalists. He was forced to flee in fear of his life ' +
+        'from Soviet-backed communists who were suppressing revolutionary socialist dissenters. ' +
+        'The experience turned him into a lifelong anti-Stalinist.\n' +
+        '\n' +
+        'Between 1941 and 1943, Orwell worked on propaganda for the BBC. In 1943, he became literary editor ' +
+        'of the Tribune, a weekly left-wing magazine. By now he was a prolific journalist, ' +
+        'writing articles, reviews and books.\n' +
+        '\n' +
+        'In 1945, Orwell\'s \'Animal Farm\' was published. A political fable set in a farmyard but ' +
+        'based on Stalin\'s betrayal of the Russian Revolution, it made Orwell\'s name and ensured ' +
+        'he was financially comfortable for the first time in his life. \'Nineteen Eighty-Four\' ' +
+        'was published four years later. Set in an imaginary totalitarian future, the book made a ' +
+        'deep impression, with its title and many phrases - such as \'Big Brother is watching you\', ' +
+        '\'newspeak\' and \'doublethink\' - entering popular use. By now Orwell\'s health was ' +
+        'deteriorating and he died of tuberculosis on 21 January 1950.',
       birthdate: new Date(1903, 5, 25),
       picture: 'orwell.jpg'
     }),
     m.Author.create({
       first_name: 'Ernest',
       last_name: 'Hemingway',
-      biography: loremIpsumForBiography,
+      biography: 'Ernest Hemingway, famous author and journalist, was born in the affluent Chicago suburb of ' +
+        'Oak Park, Illinois, on July 21, 1899. His father was a doctor; his mother, a musician. He was named ' +
+        'after his maternal grandfather, Ernest Hall. As a young man, he was interested in writing; he ' +
+        'wrote for and edited his high school’s newspaper, as well as the high school yearbook. ' +
+        'Upon graduating from Oak Park and River Forest High School in 1917, he worked for the Kansas City Star ' +
+        'newspaper briefly, but in that short time, he learned the writing style that would shape ' +
+        'nearly all of his future work.\n' +
+        '\n' +
+        'As an ambulance driver in Italy during World War I, Ernest Hemingway was wounded and spent several months ' +
+        'in the hospital. While there, he met and fell in love with a Red Cross nurse named Agnes von Kurowsky. ' +
+        'They planned to marry; however, she became engaged to an Italian officer instead.\n' +
+        '\n' +
+        'This experience devastated Hemingway, and Agnes became the basis for the female characters in his ' +
+        'subsequent short stories “A Very Short Story” (1925) and “The Snows of Kilimanjaro” (1936), ' +
+        'as well as the famous novel “A Farewell To Arms” (1929). This would also start a pattern ' +
+        'Ernest would repeat for the rest of his life – leaving women before ' +
+        'they had the chance to leave him first.\n' +
+        '\n' +
+        'Ernest Hemingway began work as a journalist upon moving to Paris in the early 1920s, but he still found ' +
+        'time to write. He was at his most prolific in the 20s and 30s. His first short story collection, ' +
+        'aptly titled “Three Stories and Ten Poems,” was published in 1923. His next short story collection, ' +
+        '“In Our Time,” published in 1925, was the formal introduction of the vaunted Hemingway style to the ' +
+        'rest of the world, and considered one of the most important works of 20th century prose. ' +
+        'He would then go on to write some of the most famous works of the 20th century, including ' +
+        '“A Farewell to Arms,” “The Sun Also Rises,” “For Whom the Bell Tolls,” and “The Old Man and the Sea.” ' +
+        'He also won the Nobel Prize for Literature in 1954.',
       birthdate: new Date(1899, 6, 21),
       picture: 'hemingway.jpg'
     }),
     m.Author.create({
       first_name: 'Umberto',
       last_name: 'Eco',
-      biography: loremIpsumForBiography,
+      biography: ' Umberto Eco was born in the city of Alessandria in the Italian region of Piedmont,  ' +
+        'right in the middle of the Genova, Milan, Turin triangle.\n' +
+        '\n' +
+        'Before he was drafted to fight in 3 wars, his father, Giulio Eco, was an accountant.\n' +
+        '\n' +
+        'Young Umberto and his mother, Giovanna, moved to a small village in the Piedmontese ' +
+        'mountainside during the Second World War.\n' +
+        '\n' +
+        'Eco received a Salesian education, and he has made references to the order ' +
+        'and its founder in his works and interviews.\n' +
+        '\n' +
+        'His family name is supposedly an acronym of ex caelis oblatus (Latin: a gift from the heavens), ' +
+        'which was given to his grandfather (a foundling) by a city official.\n' +
+        '\n' +
+        'His father came from a family of thirteen children, and was very keen fo Umberto to read Law, ' +
+        'but instead he entered the University of Turin in order to take up medieval philosophy and literature. ' +
+        'Umberto\'s thesis was on the topic of Thomas Aquinas and this earned him a BA in philosophy in 1954. ' +
+        'In that period, Eco abandoned the Roman Catholic Church after a crisis of faith.\n' +
+        '\n' +
+        'Following this, Eco worked as a cultural editor for RAI, Radiotelevisione Italiana, the state ' +
+        'broadcasting station, he also became a lecturer at the University of Turin (1956–64).\n' +
+        '\n' +
+        'A group of avant-garde artists—painters, musicians, writers—whom he had befriended at RAI (Gruppo 63) ' +
+        'became an important and influential component in Eco\'s future writing career. This was especially true ' +
+        'after the publication of his first book in 1956, Il problema estetico di San Tommaso, which was ' +
+        'an extension of his doctoral thesis. This also marked the beginning of ' +
+        'his lecturing career at his alma mater.\n' +
+        '\n' +
+        'In September 1962, he married Renate Ramge, a German art teacher with whom he has a son and a daughter. ' +
+        'He divides his time between an apartment in Milan and a vacation house near Rimini. ' +
+        'He has a 30,000 volume library in the former and a 20,000 volume library in the latter. ',
       birthdate: new Date(1932, 0, 5),
       picture: 'eco.jpg'
     }),
     m.Author.create({
       first_name: 'Ken',
       last_name: 'Follett',
-      biography: loremIpsumForBiography,
+      biography: 'Ken Follett is one of the world’s best-loved novelists. His latest book, ' +
+        'A Column of Fire – the third novel in his Kingsbridge Series – went straight to the No.1 ' +
+        'position on bestseller lists in the USA, Spain, Italy, Germany and France.\n' +
+        '\n' +
+        'He burst into the book world in 1978 with Eye of the Needle, a taut and original thriller with a ' +
+        'memorable woman character in the central role. The book won the Edgar award and became an outstanding ' +
+        'film starring Kate Nelligan and Donald Sutherland.\n' +
+        '\n' +
+        'He went on to write four more best-selling thrillers: Triple; The Key to Rebecca; ' +
+        'The Man from St Petersburg; and Lie Down with Lions. Cliff Robertson and David Soul starred in the ' +
+        'miniseries of The Key to Rebecca. In 1994 Timothy Dalton, Omar Sharif and Marg Helgenberger ' +
+        'starred in the miniseries of Lie Down with Lions.\n' +
+        '\n' +
+        'He also wrote On Wings of Eagles, the true story of how two employees of Ross Perot were rescued ' +
+        'from Iran during the revolution of 1979. This book was made into a miniseries with Richard Crenna as ' +
+        'Ross Perot and Burt Lancaster as Colonel ‘Bull’ Simons.\n' +
+        '\n' +
+        'He then surprised readers by radically changing course with The Pillars of the Earth, a novel ' +
+        'about building a cathedral in the Middle Ages. Published in September 1989 to rave reviews, ' +
+        'it was on The New York Times bestseller list for eighteen weeks. It also reached the No. 1 ' +
+        'position on lists in Canada, Great Britain and Italy, and was on the German bestseller list for six years.',
       birthdate: new Date(1949, 5, 5),
       picture: 'follett.jpg'
     }),
     m.Author.create({
       first_name: 'Luigi',
       last_name: 'Pirandello',
-      biography: loremIpsumForBiography,
+      biography: 'Luigi Pirandello was an Italian dramatist, novelist, poet, and short story writer whose ' +
+        'greatest contributions were his plays.[1] He was awarded the 1934 Nobel Prize in Literature for ' +
+        '"his almost magical power to turn psychological analysis into good theatre."[2] Pirandello\'s works ' +
+        'include novels, hundreds of short stories, and about 40 plays, some of which are written in Sicilian. ' +
+        'Pirandello\'s tragic farces are often seen as forerunners of the Theatre of the Absurd. ',
       birthdate: new Date(1867, 5, 28),
-      picture: 'follett.jpg'
+      picture: 'pirandello.jpg'
     }),
     m.Author.create({
       first_name: 'Thomas',
@@ -245,18 +334,22 @@ const loremIpsumForReview = 'Lorem ipsum dolor sit amet, consectetur adipiscing 
 const seedReviews = (m) => {
   return Promise.all([
     m.Review.create({
-      content: loremIpsumForReview,
-      rating: 1,
+      content: '\n' +
+        'This book had true potential. It was a joy to read.\n' +
+        'There were scenes and lines that made me sit there and cry. Or laugh. Or cheer. ' +
+        'The characters drove the plot to a satisfying conclusion, and resolved every issue.',
+      rating: 4,
       date: new Date(2019, 1, 1)
     }),
     m.Review.create({
-      content: loremIpsumForReview,
-      rating: 2,
+      content: 'Such a fun read, I highly recommend!',
+      rating: 5,
       date: new Date(2019, 1, 1)
     }),
     m.Review.create({
-      content: loremIpsumForReview,
-      rating: 3,
+      content: 'I loved the plot twists and loved the chemistry between the two main characters. ' +
+        'I ordered the next book so excited. Amazing!',
+      rating: 4,
       date: new Date(2019, 1, 1)
     }),
     m.Review.create({
