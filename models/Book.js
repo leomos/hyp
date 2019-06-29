@@ -60,6 +60,13 @@ class Book extends Sequelize.Model {
           notEmpty: true,
         },
       },
+      is_bestseller: {
+        type: DataTypes.BOOLEAN,
+        allowNull: false,
+        validate: {
+          notEmpty: true,
+        },
+      },
       author_interview: {
         type: DataTypes.TEXT,
         allowNull: true,

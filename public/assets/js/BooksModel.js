@@ -25,6 +25,8 @@ BooksModel.prototype = {
             hasEvents: book.events_ids.length > 0,
             genre_id: book.genre_id,
             themes_ids: book.themes_ids,
+            is_favorite: book.is_favorite,
+            is_bestseller: book.is_bestseller,
           }
         });
         this.books = data;

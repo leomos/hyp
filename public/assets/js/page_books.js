@@ -11,6 +11,8 @@ var scriptsToLoad = [
   'BookFilterModel.js',
   'BookFilterView.js',
   'BookFilterController.js',
+  'BestsellersView.js',
+  'FavoritesView.js',
 ];
 
 $(function () {
@@ -24,6 +26,8 @@ $(function () {
     var booksModel = new BooksModel();
     var booksView = new BooksView(booksModel, userModel, bookFilterModel);
     var booksController = new BooksController(booksModel, booksView);
+    var bestsellersView = new BestsellersView(booksModel, userModel);
+    var favoritesView = new FavoritesView(booksModel, userModel);
 
 
     userModel.getDetails();

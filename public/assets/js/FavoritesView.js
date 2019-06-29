@@ -1,52 +1,34 @@
-var BooksView = function(booksModel, userModel, bookFilterModel) {
+var FavoritesView = function(booksModel, userModel) {
   this.booksModel = booksModel;
   this.userModel = userModel;
-  this.bookFilterModel = bookFilterModel;
-
 
   this.init();
 };
 
-BooksView.prototype = {
+FavoritesView.prototype = {
   init: function () {
     // create children
-    this.$container = $('#books-container');
-    this.$dropdownsContainer = $('#dropdowns-container');
-    this.$dropdownGenres = this.$dropdownsContainer.find('#dropdown-genres');
-    this.$dropdownThemes = this.$dropdownsContainer.find('#dropdown-themes');
+    this.$container = $('#favorites-container');
 
     // setup handlers
     this.fetchAllBooksHandler = this.buildCardsList.bind(this);
     this.getDetailsHandler = this.buildCardsList.bind(this);
     this.logoutHandler = this.buildCardsList.bind(this);
-    this.modifyGenresFilterHandler = this.buildCardsList.bind(this);
-    this.modifyThemesFilterHandler = this.buildCardsList.bind(this);
 
     // enable
     this.booksModel.fetchAllBooksEvent.attach(this.fetchAllBooksHandler);
     this.userModel.getDetailsEvent.attach(this.getDetailsHandler);
     this.userModel.logoutEvent.attach(this.logoutHandler);
-    if(this.bookFilterModel) {
-      this.bookFilterModel.modifyGenresFilterEvent.attach(this.modifyGenresFilterHandler);
-      this.bookFilterModel.modifyThemesFilterEvent.attach(this.modifyThemesFilterHandler);
-    }
   },
 
   buildCardsList: function () {
-    var books = this.booksModel.getBooks();
+    var books = this.booksModel.getBooks().filter(function (book) {
+      return book.is_favorite;
+    });
+    console.log(books);
     var user = this.userModel.getUser();
 
-    if(this.bookFilterModel) {
-      books = this.bookFilterModel.filterBooks(books);
-      console.log(books);
-    }
-
     this.$container.html('');
-    if(books.length === 0) {
-      this.$container.html('<div class="col">\n' +
-        '    <h5 style="margin-top: 1%;margin-bottom: 1%;">No book found matching your criteria...</h5>\n' +
-        '</div>');
-    }
     books.forEach(function(book){
       var newBookCard = '' +
         '<div class="col col-12 col-sm-12 col-md-6 col-lg-4 mb-3">' +
@@ -61,7 +43,7 @@ BooksView.prototype = {
         '     <p class="card-text text-break">' + book.abstract.truncateWords(20) + '...</p>' +
         '    </div>' +
         '    <div class="card-footer bg-transparent">' + this.createAddToCartLink(user, book.id) +
-             (book.hasEvents ? '<a class="card-link" href="#">Events</a>' : '') + '</div>' +
+        (book.hasEvents ? '<a class="card-link" href="#">Events</a>' : '') + '</div>' +
         '   </div>' +
         '  </div>' +
         ' </div>' +

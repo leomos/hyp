@@ -414,6 +414,7 @@ const seedBooks = (m) => {
       number_of_pages: 400,
       format: 'paper',
       is_favorite: true,
+      is_bestseller: false,
       author_interview: 'In the late 1940s, George Orwell (whose real name is Eric Blair) ' +
         'wrote Nineteen Eighty-Four, ' +
         'the most chilling modern account of how things might end up if we fail to preserve our freedom. ' +
@@ -469,6 +470,7 @@ const seedBooks = (m) => {
       number_of_pages: 112,
       format: 'paper',
       is_favorite: false,
+      is_bestseller: true,
       author_interview: null,
       price: 1499,
       publishing_house: 'Arrow',
@@ -490,6 +492,7 @@ const seedBooks = (m) => {
       number_of_pages: 624,
       format: 'digital',
       is_favorite: false,
+      is_bestseller: false,
       author_interview: null,
       price: 1050,
       publishing_house: 'Bompiani',
@@ -508,6 +511,7 @@ const seedBooks = (m) => {
       number_of_pages: 1104,
       format: 'digital',
       is_favorite: false,
+      is_bestseller: false,
       author_interview: null,
       price: 2070,
       publishing_house: 'Pan',
@@ -529,6 +533,7 @@ const seedBooks = (m) => {
       number_of_pages: 212,
       format: 'paper',
       is_favorite: true,
+      is_bestseller: true,
       author_interview: null,
       price: 390,
       publishing_house: 'Newton Compton',
@@ -548,6 +553,7 @@ const seedBooks = (m) => {
       number_of_pages: 1320,
       format: 'paper',
       is_favorite: false,
+      is_bestseller: true,
       author_interview: null,
       price: 8910,
       publishing_house: 'The MIT Press',

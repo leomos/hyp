@@ -607,6 +607,8 @@ definitions:
         type: integer
       is_favorite:
         type: boolean
+      is_bestseller:
+        type: boolean
       isbn:
         type: string
       number_of_pages:
