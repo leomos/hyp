@@ -11,9 +11,6 @@ BooksView.prototype = {
   init: function () {
     // create children
     this.$container = $('#books-container');
-    this.$dropdownsContainer = $('#dropdowns-container');
-    this.$dropdownGenres = this.$dropdownsContainer.find('#dropdown-genres');
-    this.$dropdownThemes = this.$dropdownsContainer.find('#dropdown-themes');
 
     // setup handlers
     this.fetchAllBooksHandler = this.buildCardsList.bind(this);
