@@ -41,7 +41,8 @@ EventView.prototype = {
     var eventContent = '' +
       '<div class="row">\n' +
       '    <div class="col text-center col-auto" style="max-width: 50%;"><img class="img-fluid" src="/assets/img/' + event.picture + '" /></div>\n' +
-      '    <div class="col col-6">\n' +
+      '    <div class="col col-lg-6 col-12">\n' +
+      '        <div class="d-block d-sm-none mb-3"></div>' +
       '        <h5><span><i class="fa fa-map-marker pr-1"></i></span><span class="text-secondary">' + event.location + '</span></h5>\n' +
       '        <h5><span><i class="fa fa-calendar pr-1"></i></span><span class="text-secondary">Wed, 12 Jun 2019 15:00:00 GMT</span></h5><a href="#">View on map <i class="fa fa-arrow-right"></i></a>\n' +
       '        <p class="pt-2">' + event.description + '</p>\n' +
@@ -67,7 +68,8 @@ EventView.prototype = {
       '</div>\n' +
       '<div class="row">\n' +
       '    <div class="col text-center col-auto" style="max-width: 50%;"><img class="img-fluid" src="/assets/img/' + book.picture + '" /></div>\n' +
-      '    <div class="col col-6">\n' +
+      '    <div class="col col-lg-6 col-12">\n' +
+      '        <div class="d-block d-sm-none mb-3"></div>' +
       '        <h4>' + book.title +  '</h4>\n' +
       '        <p>' + book.abstract + '</p>\n' +
       '        <a href=/pages/book.html?id=' + book.id + '>Go to book page <i class="fa fa-arrow-right"></i></a>' +
