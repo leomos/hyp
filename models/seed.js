@@ -588,28 +588,28 @@ const loremIpsumForEvent = 'Lorem ipsum dolor sit amet, consectetur adipiscing e
 const seedEvents = (m) => {
   return Promise.all([
     m.Event.create({
-      date: new Date(Date.UTC(2019, 5, 4, 12)),
+      date: new Date(Date.UTC(2019, 6, 4, 12)),
       name: 'Nineteen Eighty-Four: are we living in a dystopian society?',
       description: 'A rant about current police-state nations.',
       picture: '1984_e1.jpg',
       location: 'Piazza Leonardo da Vinci 32, Milano, MI, Italy',
     }),
     m.Event.create({
-      date: new Date(Date.UTC(2019, 5, 13, 10)),
+      date: new Date(Date.UTC(2019, 6, 13, 10)),
       name: 'The Orwellian Catastrophe: Is Privacy Really Threatened?',
       description: loremIpsumForEvent,
       picture: '1984_e2.jpg',
       location: 'Place Georges-Pompidou, 75004 Paris, France',
     }),
     m.Event.create({
-      date: new Date(Date.UTC(2019, 5, 28, 12)),
+      date: new Date(Date.UTC(2019, 6, 28, 12)),
       name: 'Applying the Old Man and the Sea\'s lessons to you daily life',
       description: loremIpsumForEvent,
       picture: 'old-man-sea_e1.jpg',
       location: '24 Dequetteville Terrace, Kent Town SA 5067, Australia',
     }),
     m.Event.create({
-      date: new Date(Date.UTC(2019, 5, 12, 15)),
+      date: new Date(Date.UTC(2019, 6, 12, 15)),
       name: 'The Pillars of our contemporary life',
       description: loremIpsumForEvent,
       picture: 'pillars-of-earth_e1.jpg',
