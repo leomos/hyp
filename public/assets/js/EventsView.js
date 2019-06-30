@@ -36,9 +36,9 @@ EventsView.prototype = {
       eventsContent += '' +
         '            <div class="col col-12 mb-3">\n' +
         '                <div class="row">\n' +
-        '                    <div class="col col-12 col-lg-3"><img class="img-fluid" src="/assets/img/' + event.picture + '" /></div>\n' +
+        '                    <div class="col col-12 col-lg-3"><a href="/pages/event.html?id=' + event.id + '"><img class="img-fluid" src="/assets/img/' + event.picture + '" /></a></div>\n' +
         '                    <div class="col">\n' +
-        '                        <h4>' + event.name + '</h4>\n' +
+        '                        <a class="text-decoration-none text-reset" href="/pages/event.html?id=' + event.id + '"><h4>' + event.name + '</h4></a>\n' +
         '                        <h6><span><i class="fa fa-map-marker mr-1"></i></span><span class="text-secondary">' + event.location + '</span></h6>\n' +
         '                        <h6><span><i class="fa fa-calendar mr-1"></i></span><span class="text-secondary">' + eventDate.toGMTString() + '</span></h6>\n' +
         '                        <p>' + event.description + '</p>\n' +

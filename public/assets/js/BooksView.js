@@ -61,7 +61,7 @@ BooksView.prototype = {
         '    </div>' +
         '    <div class="card-footer bg-transparent">' + this.createAddToCartLink(user, book.id) +
         //TODO: event's link
-             (book.hasEvents ? '<a class="card-link" href="#">Events</a>' : '') + '</div>' +
+             (book.hasEvents ? '<a class="card-link" href="/pages/book.html?id=' + book.id + '#events-container">Events</a>' : '') + '</div>' +
         '   </div>' +
         '  </div>' +
         ' </div>' +

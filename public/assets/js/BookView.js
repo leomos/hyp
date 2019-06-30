@@ -149,7 +149,9 @@ BookView.prototype = {
         '        <div class="col">\n' +
         '            <h4>' + event.name + '</h4>\n' +
         //TODO: event link
-        '            <h4><a href="#"><span style="text-decoration: underline;">Go to event</span></a></h4>\n' +
+        '            <h4><a href="/pages/event.html?id='+ event.id   +'"><span style="text-decoration: underline;">Go' +
+        ' to' +
+        ' event</span></a></h4>\n' +
         '        </div>\n' +
         '    </div>\n' +
         '</div>'
