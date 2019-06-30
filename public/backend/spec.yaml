@@ -680,6 +680,8 @@ definitions:
         type: string
       picture:
         type: string
+      location:
+        type: string
     type: object
   Genre:
     properties:

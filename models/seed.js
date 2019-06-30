@@ -578,7 +578,7 @@ const seedBooks = (m) => {
     }})
 };
 
-const loremIpsumForEvent = ' Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sit amet erat nunc. Etiam' +
+const loremIpsumForEvent = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sit amet erat nunc. Etiam' +
   ' eu vestibulum ante, vitae vehicula lectus. Ut finibus fermentum diam eu commodo. Pellentesque turpis ' +
   'magna, cursus nec magna eu, tempor pulvinar nisl. Nam cursus semper turpis hendrerit tempus. ' +
   'Vestibulum pharetra nulla tortor, non ornare lectus condimentum.  Lorem ipsum dolor sit amet, consectetur ' +
@@ -592,24 +592,28 @@ const seedEvents = (m) => {
       name: 'Nineteen Eighty-Four: are we living in a dystopian society?',
       description: 'A rant about current police-state nations.',
       picture: '1984_e1.jpg',
+      location: 'Piazza Leonardo da Vinci 32, Milano, MI, Italy',
     }),
     m.Event.create({
       date: new Date(Date.UTC(2019, 2, 13, 10)),
       name: 'The Orwellian Catastrophe: Is Privacy Really Threatened?',
       description: loremIpsumForEvent,
       picture: '1984_e2.jpg',
+      location: 'Place Georges-Pompidou, 75004 Paris, France',
     }),
     m.Event.create({
       date: new Date(Date.UTC(2019, 10, 28, 12)),
       name: 'Applying the Old Man and the Sea\'s lessons to you daily life',
       description: loremIpsumForEvent,
       picture: 'old-man-sea_e1.jpg',
+      location: '24 Dequetteville Terrace, Kent Town SA 5067, Australia',
     }),
     m.Event.create({
       date: new Date(Date.UTC(2019, 8, 12, 15)),
       name: 'The Pillars of our contemporary life',
       description: loremIpsumForEvent,
       picture: 'pillars-of-earth_e1.jpg',
+      location: '18 Tsing Luk St, Tsing Yi, Hong Kong',
     }),
   ])
     .then(([

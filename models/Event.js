@@ -31,6 +31,13 @@ class Event extends Sequelize.Model {
           notEmpty: true,
         },
       },
+      location: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        validate: {
+          notEmpty: true,
+        },
+      },
     }, {
       sequelize,
       timestamps: false,
