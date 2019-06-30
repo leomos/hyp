@@ -49,11 +49,13 @@ BooksView.prototype = {
         '<div class="col col-12 col-sm-12 col-md-6 col-lg-4 mb-3">' +
         ' <div class="card h-100">' +
         '  <div class="row no-gutters h-100">' +
-        '   <div class="col-4 h-100"><img class="card-img" src="/assets/img/'+ book.picture + '" style="max-height:' +
-        ' 100%;"/></div>' +
+        '   <div class="col-4 h-100">' +
+        '    <a href="/pages/book.html?id=' + book.id + '" class="text-decoration-none text-reset"><img' +
+        ' class="card-img" src="/assets/img/'+ book.picture + '" style="max-height: 100%;"/></a>' +
+        '   </div>' +
         '   <div class="col-8 d-flex flex-column h-100">' +
         '    <div class="card-body h-100">' +
-        '     <h4 class="card-title">' + book.title + '</h4>' +
+        '     <h4 class="card-title"><a href="/pages/book.html?id=' + book.id + '" class="text-decoration-none text-reset">' + book.title + '</a></h4>' +
         '     <h6 class="text-muted card-subtitle mb-2">' + book.authors.join(', ') + '</h6>' +
         '     <p class="card-text text-break">' + book.abstract.truncateWords(20) + '...</p>' +
         '    </div>' +
