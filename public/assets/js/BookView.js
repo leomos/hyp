@@ -37,14 +37,19 @@ BookView.prototype = {
     this.userModel.logoutEvent.attach(this.getDetailsHandler);
 
     this.bookId = getUrlParameter('id');
-    if(!this.bookId) {
-      this.$headerContainer.html('<h2 style="margin-top: 5%;margin-bottom: 2%;">Book not found...</h2>');
+    if(!this.bookId || !parseInt(this.bookId)) {
+      this.showError();
       return;
     }
     this.bookModel.fetchBook(parseInt(this.bookId));
   },
 
   buildBookDetails: function() {
+    if(this.bookModel.getError() !== null) {
+      this.showError();
+      return;
+    }
+
     var book = this.bookModel.getBook();
     var authors = this.bookModel.getAuthors();
     var themes = this.bookModel.getThemes();
@@ -92,6 +97,11 @@ BookView.prototype = {
   },
 
   buildBookReviewDetails: function() {
+    if(this.bookModel.getError() !== null) {
+      this.showError();
+      return;
+    }
+
     var reviews = this.bookModel.getReviews();
     if(reviews.length > 0) {
       var rating =
@@ -114,6 +124,11 @@ BookView.prototype = {
   },
 
   buildEventsList: function() {
+    if(this.bookModel.getError() !== null) {
+      this.showError();
+      return;
+    }
+
     var events = this.bookModel.getEvents();
     var book = this.bookModel.getBook();
 
@@ -150,6 +165,11 @@ BookView.prototype = {
   },
 
   buildReviewsList: function() {
+    if(this.bookModel.getError() !== null) {
+      this.showError();
+      return;
+    }
+
     var reviews = this.bookModel.getReviews();
 
     var reviewsContent = '' +
@@ -180,4 +200,11 @@ BookView.prototype = {
     this.$reviewsContainer.html(reviewsContent);
   },
 
+  showError: function() {
+    this.$headerContainer.html('<h2 style="margin-top: 5%;margin-bottom: 2%;">Book not found...</h2>');
+    this.$mainContainer.html('');
+    this.$eventsContainer.html('');
+    this.$reviewsContainer.html('');
+    this.$abstractContainer.html('');
+  },
 };

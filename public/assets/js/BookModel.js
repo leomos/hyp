@@ -37,6 +37,10 @@ BookModel.prototype = {
     return this.events;
   },
 
+  getError: function() {
+    return this.error;
+  },
+
 
   fetchBook: function (id) {
     $.when(
