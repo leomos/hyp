@@ -60,8 +60,10 @@ BookView.prototype = {
     var bookPrice = (parseInt(book.price)/100).toFixed(2);
     var mainContent = '' +
       '    <div class="row">\n' +
-      '        <div class="col text-center col-auto" id="book-cover-container"><img class="img-fluid pb-2" src="/assets/img/'+ book.picture + '" style="max-height: 300px;max-width: 300px;" /></div>\n' +
-      '        <div class="col">\n' +
+      '        <div class="col text-center col-xs-12 col-auto" id="book-cover-container">' +
+      '            <img class="img-fluid pb-2" src="/assets/img/'+ book.picture + '" style="max-height: 300px;max-width: 300px;" />' +
+      '        </div>\n' +
+      '        <div class="col col-auto">\n' +
       '            <div class="row">\n' +
       '                <div class="col">\n' +
       '                    <h4 class="pb-2">' + book.title + ' - ' + bookYear + ' - ' + book.publishing_house +'</h4>\n' +
