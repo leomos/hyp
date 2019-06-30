@@ -12,7 +12,12 @@ var utils = require('../utils/writer.js');
 exports.getReview = function(id) {
   return new Promise(async function(resolve, reject) {
     if(parseInt(id)) {
-      await models.Review.findByPk(id)
+      await models.Review.findByPk(id, {
+        include: [{
+          model: models.User,
+          attributes: ['first_name', 'last_name']
+        }]
+      })
         .then(review => {
           if(review) {
             resolve(review);

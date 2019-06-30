@@ -1,3 +1,5 @@
+//TODO: remove loremipsum
+
 const seedUsers = (m) => {
   return Promise.all([
     m.User.create({

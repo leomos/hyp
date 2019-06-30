@@ -711,6 +711,13 @@ definitions:
         type: integer
       book_id:
         type: integer
+      User:
+        type: object
+        properties:
+          first_name:
+            type: string
+          last_name:
+            type: string
     type: object
   Theme:
     properties:
