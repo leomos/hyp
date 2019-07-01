@@ -134,6 +134,7 @@ const seedAuthors = (m) => {
         '\'newspeak\' and \'doublethink\' - entering popular use. By now Orwell\'s health was ' +
         'deteriorating and he died of tuberculosis on 21 January 1950.',
       birthdate: new Date(1903, 5, 25),
+      deathdate: new Date(1950, 0, 21),
       picture: 'orwell.jpg'
     }),
     m.Author.create({
@@ -166,6 +167,7 @@ const seedAuthors = (m) => {
         '“A Farewell to Arms,” “The Sun Also Rises,” “For Whom the Bell Tolls,” and “The Old Man and the Sea.” ' +
         'He also won the Nobel Prize for Literature in 1954.',
       birthdate: new Date(1899, 6, 21),
+      deathdate: new Date(1961, 6, 2),
       picture: 'hemingway.jpg'
     }),
     m.Author.create({
@@ -203,6 +205,7 @@ const seedAuthors = (m) => {
         'He divides his time between an apartment in Milan and a vacation house near Rimini. ' +
         'He has a 30,000 volume library in the former and a 20,000 volume library in the latter. ',
       birthdate: new Date(1932, 0, 5),
+      deathdate: new Date(2016, 1, 19),
       picture: 'eco.jpg'
     }),
     m.Author.create({
@@ -241,6 +244,7 @@ const seedAuthors = (m) => {
         'include novels, hundreds of short stories, and about 40 plays, some of which are written in Sicilian. ' +
         'Pirandello\'s tragic farces are often seen as forerunners of the Theatre of the Absurd. ',
       birthdate: new Date(1867, 5, 28),
+      deathdate: new Date(1936, 11, 10),
       picture: 'pirandello.jpg'
     }),
     m.Author.create({

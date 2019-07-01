@@ -29,7 +29,7 @@ AuthorsView.prototype = {
         ' src="/assets/img/' + author.picture + '" /></div>\n' +
         '    <div class="col col-md-9">\n' +
         '        <h4>' + author.first_name + ' ' + author.last_name + '</h4>\n' +
-        '        <h5 class="text-secondary">' + author.birthdate + '</h5>\n' +
+        '        <h5 class="text-secondary">' + author.birthdate + (author.deathdate !== null ? ' / ' + author.deathdate : '' ) + '</h5>\n' +
         '        <p class="text-truncate">' + author.biography + '</p>' +
         '        <a href="#">Learn more</a></div>\n' +
         '</div>';

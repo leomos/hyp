@@ -28,6 +28,11 @@ class Author extends Sequelize.Model {
         type: DataTypes.DATEONLY,
         allowNull: false,
       },
+      deathdate: {
+        type: DataTypes.DATEONLY,
+        allowNull: true,
+        defaultValue: null,
+      },
       picture: {
         type: DataTypes.STRING,
       }

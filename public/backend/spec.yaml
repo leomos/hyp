@@ -573,6 +573,9 @@ definitions:
       birthdate:
         format: date
         type: string
+      deathdate:
+        format: date
+        type: string
       books_ids:
         items:
           type: integer
