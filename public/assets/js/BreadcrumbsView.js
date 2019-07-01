@@ -19,7 +19,6 @@ BreadcrumbsView.prototype = {
 
   buildBreadcrumbs: function() {
     var breadcrumbs = this.breadcrumbsModel.getBreadcrumbs();
-    console.log(breadcrumbs);
     var breadcrumbsContent = '';
 
     for (var i = 0; i < breadcrumbs.length; i++) {

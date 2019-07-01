@@ -16,7 +16,6 @@ BreadcrumbsModel.prototype = {
       link: link,
       active: !!active,
     });
-    console.log(this.breadcrumbs);
     this.addBreadcrumbEvent.notify();
   }
 };
