@@ -35,7 +35,6 @@ BooksView.prototype = {
 
     if(this.bookFilterModel) {
       books = this.bookFilterModel.filterBooks(books);
-      console.log(books);
     }
 
     this.$container.html('');
@@ -68,6 +67,8 @@ BooksView.prototype = {
         '</div>';
       this.$container.append(newBookCard);
     }.bind(this));
+
+    this.addRegistrationNeededModal();
   },
 
   createAddToCartLink: function(user, bookId) {
@@ -75,7 +76,32 @@ BooksView.prototype = {
       //TODO: cart logic
       return '<a class="card-link" href="#">Add to cart</a>';
     } else {
-      return '<span class="mr-4 text-secondary">Add to cart</span>'
+      return '' +
+        '<button type="button" class="btn btn-link mr-4 p-0 card-link" data-toggle="modal"' +
+        ' data-target="#registrationNeededModal">\n' +
+        '  Add to cart\n' +
+        '</button>'
     }
   },
+
+  addRegistrationNeededModal: function () {
+    this.$container.append('' +
+      '<div role="dialog" tabindex="-1" class="modal fade" id="registrationNeededModal">\n' +
+      '    <div class="modal-dialog modal-dialog-centered" role="document">\n' +
+      '        <div class="modal-content">\n' +
+      '            <div class="modal-header border-0 pb-1"><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button></div>\n' +
+      '            <div class="modal-body pt-0 pl-4 pr-4 border-0">\n' +
+      '                <h4>We are happy that you found an interesting book, please login to add it to cart.</h4>\n' +
+      '                <p>If you are a new user, just register a new account...and welcome to ebookit!</p>\n' +
+      '            </div>\n' +
+      '            <div class="modal-footer border-0 pt-0">' +
+      '                <a href="/pages/login.html" type="button" class="btn btn-primary w-100 text-light"' +
+      ' type="button">Login</a>' +
+      '                <a href="/pages/registration.html" type="button" class="btn btn-primary w-100 text-light"' +
+      ' type="button">Register</a>' +
+      '            </div>\n' +
+      '        </div>\n' +
+      '    </div>\n' +
+      '</div>');
+  }
 };
