@@ -25,3 +25,11 @@
   /*max-height: 100px;*/
 }
 
+.author-picture {
+  height: 200px;
+  max-width: 200px;
+}
+
+.navbar-dark .navbar-nav .nav-link {
+}
+
