@@ -59,10 +59,11 @@ UserNavbarView.prototype = {
 
 
     } else {
+      var redirect = encodeURIComponent(document.location.href);
       this.$userLabel.text('Sign In');
       this.$userMenu.html(
-        '<a role="presentation" class="dropdown-item" href="/pages/login.html" id="">Login</a>' +
-        '<a role="presentation" class="dropdown-item" href="/pages/registration.html" id="">Register</a>');
+        '<a role="presentation" class="dropdown-item" href="/pages/login.html?redirect='+redirect+'" id="">Login</a>' +
+        '<a role="presentation" class="dropdown-item" href="/pages/registration.html?redirect='+redirect+'" id="">Register</a>');
     }
   },
 

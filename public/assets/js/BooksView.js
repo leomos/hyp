@@ -95,9 +95,10 @@ BooksView.prototype = {
       '                <p>If you are a new user, just register a new account...and welcome to ebookit!</p>\n' +
       '            </div>\n' +
       '            <div class="modal-footer border-0 pt-0">' +
-      '                <a href="/pages/login.html" type="button" class="btn btn-primary w-100 text-light"' +
+      '                <a href="/pages/login.html?redirect=' + encodeURIComponent(document.location.href) + '" type="button" class="btn btn-primary w-100' +
+    ' text-light"' +
       ' type="button">Login</a>' +
-      '                <a href="/pages/registration.html" type="button" class="btn btn-primary w-100 text-light"' +
+      '                <a href="/pages/registration.html?redirect=' + encodeURIComponent(document.location.href) + '" type="button" class="btn btn-primary w-100 text-light"' +
       ' type="button">Register</a>' +
       '            </div>\n' +
       '        </div>\n' +

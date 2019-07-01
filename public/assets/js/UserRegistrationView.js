@@ -112,7 +112,8 @@ UserRegistrationView.prototype = {
   login: function (sender, args) {
     this.$loginSpinner.hide();
     if(args.user) {
-      document.location.href = '/';
+      var redirect = getUrlParameter('redirect');
+      document.location.href = decodeURIComponent(redirect) ? decodeURIComponent(redirect) : '/';
     } else if(args.error) {
       var message = args.error.message ? args.error.message : 'An error occurred';
       this.$loginToastBody.text(message);

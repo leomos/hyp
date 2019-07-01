@@ -229,7 +229,7 @@ BookView.prototype = {
   },
 
   addRegistrationNeededModal: function () {
-    this.$mainContainer.append('' +
+    this.$container.append('' +
       '<div role="dialog" tabindex="-1" class="modal fade" id="registrationNeededModal">\n' +
       '    <div class="modal-dialog modal-dialog-centered" role="document">\n' +
       '        <div class="modal-content">\n' +
@@ -239,9 +239,10 @@ BookView.prototype = {
       '                <p>If you are a new user, just register a new account...and welcome to ebookit!</p>\n' +
       '            </div>\n' +
       '            <div class="modal-footer border-0 pt-0">' +
-      '                <a href="/pages/login.html" type="button" class="btn btn-primary w-100 text-light"' +
+      '                <a href="/pages/login.html?redirect=' + encodeURIComponent(document.location.href) + '" type="button" class="btn btn-primary w-100' +
+      ' text-light"' +
       ' type="button">Login</a>' +
-      '                <a href="/pages/registration.html" type="button" class="btn btn-primary w-100 text-light"' +
+      '                <a href="/pages/registration.html?redirect=' + encodeURIComponent(document.location.href) + '" type="button" class="btn btn-primary w-100 text-light"' +
       ' type="button">Register</a>' +
       '            </div>\n' +
       '        </div>\n' +
