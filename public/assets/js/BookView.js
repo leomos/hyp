@@ -1,7 +1,8 @@
-var BookView = function(bookModel, userModel) {
+var BookView = function(bookModel, userModel, breadcrumbsModel) {
   this.bookModel = bookModel;
   this.userModel = userModel;
   this.bookId = null;
+  this.breadcrumbsModel = breadcrumbsModel;
 
   this.init();
 };
@@ -55,7 +56,11 @@ BookView.prototype = {
     var themes = this.bookModel.getThemes();
     var genres = this.bookModel.getGenres();
 
-    this.$headerContainer.html('<h2 style="margin-top: 5%;margin-bottom: 2%;">' + book.title + '</h2>');
+    if(this.breadcrumbsModel) {
+      this.breadcrumbsModel.addBreadcrumb(book.title, '/pages/book.html?id='+book.id, true);
+    }
+
+    this.$headerContainer.html('<h2>' + book.title + '</h2>');
 
     var bookYear = (new Date(book.publication_date)).getFullYear();
     var bookAuthors = authors.map(function(author){
@@ -203,7 +208,7 @@ BookView.prototype = {
   },
 
   showError: function() {
-    this.$headerContainer.html('<h2 style="margin-top: 5%;margin-bottom: 2%;">Book not found...</h2>');
+    this.$headerContainer.html('<h2>Book not found...</h2>');
     this.$mainContainer.html('');
     this.$eventsContainer.html('');
     this.$reviewsContainer.html('');

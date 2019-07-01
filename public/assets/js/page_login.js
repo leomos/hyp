@@ -7,6 +7,8 @@ var scriptsToLoad = [
   'UserLoginController.js',
   'UserNavbarView.js',
   'UserNavbarController.js',
+  'BreadcrumbsModel.js',
+  'BreadcrumbsView.js',
 ];
 
 $(function () {
@@ -16,7 +18,11 @@ $(function () {
     var userLoginController = new UserLoginController(userModel, userLoginView);
     var userNavbarView = new UserNavbarView(userModel);
     var userNavbarController = new UserNavbarController(userModel, userNavbarView);
+    var breadcrumbsModel = new BreadcrumbsModel();
+    var breadcrumbsView = new BreadcrumbsView(breadcrumbsModel);
 
     userModel.getDetails();
+    breadcrumbsModel.addBreadcrumb('Home', '/index.html');
+    breadcrumbsModel.addBreadcrumb('Login', '/pages/login.html', true);
   });
 });

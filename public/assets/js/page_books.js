@@ -5,6 +5,8 @@ var scriptsToLoad = [
   'UserModel.js',
   'UserNavbarView.js',
   'UserNavbarController.js',
+  'BreadcrumbsModel.js',
+  'BreadcrumbsView.js',
   'BooksModel.js',
   'BooksView.js',
   'BooksController.js',
@@ -20,6 +22,8 @@ $(function () {
     var userModel = new UserModel();
     var userNavbarView = new UserNavbarView(userModel);
     var userNavbarController = new UserNavbarController(userModel, userNavbarView);
+    var breadcrumbsModel = new BreadcrumbsModel();
+    var breadcrumbsView = new BreadcrumbsView(breadcrumbsModel);
     var bookFilterModel = new BookFilterModel();
     var bookFilterView = new BookFilterView(bookFilterModel);
     var bookFilterController = new BookFilterController(bookFilterModel, bookFilterView);
@@ -31,6 +35,8 @@ $(function () {
 
 
     userModel.getDetails();
+    breadcrumbsModel.addBreadcrumb('Home', '/index.html');
+    breadcrumbsModel.addBreadcrumb('Books', '/pages/books.html', true);
     bookFilterModel.fetchAvailableFilters();
     booksModel.fetchAllBooks();
   });

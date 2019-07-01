@@ -1,6 +1,7 @@
-var EventView = function(eventModel) {
+var EventView = function(eventModel, breadcrumbsModel) {
   this.eventModel = eventModel;
   this.eventId = null;
+  this.breadcrumbsModel = breadcrumbsModel;
 
   this.init();
 };
@@ -36,7 +37,11 @@ EventView.prototype = {
 
     var event = this.eventModel.getEvent();
 
-    this.$headerContainer.html('<h2 style="margin-top: 5%;margin-bottom: 2%;">' + event.name + '</h2>');
+    if(this.breadcrumbsModel) {
+      this.breadcrumbsModel.addBreadcrumb(event.name, '/pages/event.html?id='+event.id, true);
+    }
+
+    this.$headerContainer.html('<h2>' + event.name + '</h2>');
 
     var eventContent = '' +
       '<div class="row">\n' +
@@ -44,6 +49,7 @@ EventView.prototype = {
       '    <div class="col col-lg-6 col-12">\n' +
       '        <div class="d-block d-sm-none mb-3"></div>' +
       '        <h5><span><i class="fa fa-map-marker pr-1"></i></span><span class="text-secondary">' + event.location + '</span></h5>\n' +
+      // TODO: fix date
       '        <h5><span><i class="fa fa-calendar pr-1"></i></span><span class="text-secondary">Wed, 12 Jun 2019 15:00:00 GMT</span></h5><a href="#">View on map <i class="fa fa-arrow-right"></i></a>\n' +
       '        <p class="pt-2">' + event.description + '</p>\n' +
       '    </div>\n' +
@@ -79,7 +85,7 @@ EventView.prototype = {
   },
 
   showError: function() {
-    this.$headerContainer.html('<h2 style="margin-top: 5%;margin-bottom: 2%;">Event not found...</h2>');
+    this.$headerContainer.html('<h2>Event not found...</h2>');
     this.$eventContainer.html('');
     this.$bookContainer.html('');
   },
