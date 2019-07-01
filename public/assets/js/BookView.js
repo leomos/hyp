@@ -84,7 +84,9 @@ BookView.prototype = {
       '                    <h5 class="pb-2">' + book.language.capitalizeFirstLetter() + '</h5>\n' +
       '                    <h3 class="pb-2"><strong>' + bookPrice + '€</strong></h3>' +
       //TODO: cart logic
-      '                    <button class="btn btn-primary" type="button" disabled="true" id="book-add-cart-button">Add to cart</button>' +
+      '                    <button class="btn btn-primary" type="button" id="book-add-cart-button">' +
+      '                        Add to cart' +
+      '                    </button>' +
       '                </div>\n' +
       '            </div>\n' +
       '        </div>\n' +
@@ -100,6 +102,7 @@ BookView.prototype = {
       //'    <p style="max-width: 700px;">Take a look at the <a href="#">author&#39;s interview</a><br /></p>\n' +
       '';
     this.$abstractContainer.html(abstractContent);
+    this.addRegistrationNeededModal();
   },
 
   buildBookReviewDetails: function() {
@@ -126,7 +129,17 @@ BookView.prototype = {
 
   toggleAddToCartButton: function() {
     this.$addToCartButton = this.$mainContainer.find('#book-add-cart-button');
-    this.$addToCartButton.prop('disabled', !this.userModel.getUser());
+    if(!this.userModel.getUser()) {
+      this.$addToCartButton.attr({
+        'data-toggle': 'modal',
+        'data-target': '#registrationNeededModal',
+      });
+    } else {
+      this.$addToCartButton.attr({
+        'data-toggle': '',
+        'data-target': '',
+      });
+    }
   },
 
   buildEventsList: function() {
@@ -147,7 +160,6 @@ BookView.prototype = {
       eventsContent += '<div class="col col-12 col-lg-6 mb-3"><h5>No events found...</h5></div>';
     }
     events.forEach(function(event) {
-      console.log(event);
       eventsContent += '' +
         '<div class="col col-12 col-lg-6 mb-3">\n' +
         '    <div class="row">\n' +
@@ -215,4 +227,25 @@ BookView.prototype = {
     this.$reviewsContainer.html('');
     this.$abstractContainer.html('');
   },
+
+  addRegistrationNeededModal: function () {
+    this.$mainContainer.append('' +
+      '<div role="dialog" tabindex="-1" class="modal fade" id="registrationNeededModal">\n' +
+      '    <div class="modal-dialog modal-dialog-centered" role="document">\n' +
+      '        <div class="modal-content">\n' +
+      '            <div class="modal-header border-0 pb-1"><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button></div>\n' +
+      '            <div class="modal-body pt-0 pl-4 pr-4 border-0">\n' +
+      '                <h4>We are happy that you found an interesting book, please login to add it to cart.</h4>\n' +
+      '                <p>If you are a new user, just register a new account...and welcome to ebookit!</p>\n' +
+      '            </div>\n' +
+      '            <div class="modal-footer border-0 pt-0">' +
+      '                <a href="/pages/login.html" type="button" class="btn btn-primary w-100 text-light"' +
+      ' type="button">Login</a>' +
+      '                <a href="/pages/registration.html" type="button" class="btn btn-primary w-100 text-light"' +
+      ' type="button">Register</a>' +
+      '            </div>\n' +
+      '        </div>\n' +
+      '    </div>\n' +
+      '</div>');
+  }
 };
