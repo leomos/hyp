@@ -27,11 +27,12 @@ AuthorsView.prototype = {
         '<div class="row mt-5">\n' +
         '    <div class="col col-xs-12 col-md-3 text-center"><img class="img-fluid author-picture rounded shadow"' +
         ' src="/assets/img/' + author.picture + '" /></div>\n' +
-        '    <div class="col col-md-9">\n' +
+        '    <div class="col col-md-7">\n' +
         '        <h4>' + author.first_name + ' ' + author.last_name + '</h4>\n' +
         '        <h5 class="text-secondary">' + author.birthdate + (author.deathdate !== null ? ' / ' + author.deathdate : '' ) + '</h5>\n' +
         '        <p class="text-truncate">' + author.biography + '</p>' +
-        '        <a href="#">Learn more</a></div>\n' +
+        '        <a href="#">Learn more</a>' +
+        '     </div>\n' +
         '</div>';
     });
 
