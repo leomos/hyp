@@ -31,7 +31,7 @@ AuthorsView.prototype = {
         '        <h4>' + author.first_name + ' ' + author.last_name + '</h4>\n' +
         '        <h5 class="text-secondary">' + author.birthdate + (author.deathdate !== null ? ' / ' + author.deathdate : '' ) + '</h5>\n' +
         '        <p class="text-truncate">' + author.biography + '</p>' +
-        '        <a href="#">Learn more</a>' +
+        '        <a href="/pages/author.html?id=' + author.id + '">Learn more</a>' +
         '     </div>\n' +
         '</div>';
     });

@@ -65,7 +65,7 @@ BookView.prototype = {
     var bookYear = (new Date(book.publication_date)).getFullYear();
     var bookAuthors = authors.map(function(author){
       //TODO: author's link
-      return '<a href="#"><span style="text-decoration: underline;">' + author.first_name + ' ' + author.last_name + '</span></a>';
+      return '<a href="/pages/author.html?id=' + author.id + '"><span style="text-decoration: underline;">' + author.first_name + ' ' + author.last_name + '</span></a>';
     });
     var bookPrice = (parseInt(book.price)/100).toFixed(2);
     var mainContent = '' +
