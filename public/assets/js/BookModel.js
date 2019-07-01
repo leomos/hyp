@@ -5,10 +5,12 @@ var BookModel = function() {
   this.genres = [];
   this.reviews = [];
   this.events = [];
+  this.similarBooks = [];
   this.error = null;
   this.fetchBookEvent = new Event(this);
   this.fetchBookReviewsEvent = new Event(this);
   this.fetchBookEventsEvent = new Event(this);
+  this.fetchSimilarBooksEvent = new Event(this);
 };
 
 BookModel.prototype = {
@@ -35,6 +37,10 @@ BookModel.prototype = {
 
   getEvents: function() {
     return this.events;
+  },
+
+  getSimilarBooks: function() {
+    return this.similarBooks;
   },
 
   getError: function() {
@@ -98,6 +104,21 @@ BookModel.prototype = {
               }
             }
             this.fetchBookEventsEvent.notify();
+          }.bind(this));
+
+        var similarBooksRequestsPromises = bookFromAPI.similar_books_ids.map(function(similarBookId){
+          return $.get('/books/'+similarBookId);
+        });
+        $.when.apply(null, similarBooksRequestsPromises)
+          .done(function() {
+            if(arguments.length === 3 && (typeof arguments[1])==="string") {
+              this.similarBooks.push(arguments[0]);
+            } else {
+              for (var i = 0; i < arguments.length; i++) {
+                this.similarBooks.push(arguments[i][0]);
+              }
+            }
+            this.fetchSimilarBooksEvent.notify();
           }.bind(this));
 
         this.book = bookFromAPI;

@@ -15,6 +15,7 @@ BookView.prototype = {
     this.$abstractContainer = $('#abstract-container');
     this.$eventsContainer = $('#events-container');
     this.$reviewsContainer = $('#reviews-container');
+    this.$similarBooksContainer = $('#similar-container');
 
     //setup handlers
     this.fetchBookHandler = this.buildBookDetails.bind(this);
@@ -22,6 +23,7 @@ BookView.prototype = {
     this.getDetailsHandler = this.toggleAddToCartButton.bind(this);
     this.fetchBookEventsHandler = this.buildEventsList.bind(this);
     this.fetchBookReviewsHandler = this.buildReviewsList.bind(this);
+    this.fetchSimilarBooksHandler = this.buildSimilarBooksList.bind(this);
 
     //enable
     this.bookModel.fetchBookEvent.attach(this.fetchBookHandler);
@@ -33,6 +35,8 @@ BookView.prototype = {
 
     this.bookModel.fetchBookReviewsEvent.attach(this.fetchBookReviewsHandler);
     this.bookModel.fetchBookEvent.attach(this.fetchBookReviewsHandler);
+
+    this.bookModel.fetchSimilarBooksEvent.attach(this.fetchSimilarBooksHandler);
 
     this.userModel.getDetailsEvent.attach(this.getDetailsHandler);
     this.userModel.logoutEvent.attach(this.getDetailsHandler);
@@ -218,6 +222,41 @@ BookView.prototype = {
       '</div>';
 
     this.$reviewsContainer.html(reviewsContent);
+  },
+
+  buildSimilarBooksList: function() {
+    var books = this.bookModel.getSimilarBooks();
+    var booksContent = '' +
+      '<div class="row">\n' +
+      '    <div class="col">\n' +
+      '        <h4>Similar books</h4>\n' +
+      '    </div>\n' +
+      '</div>' +
+      '<div class="row">';
+
+    books.forEach(function(book){
+      booksContent += '' +
+        '<div class="col col-12 col-sm-12 col-md-6 col-lg-4 mb-3">' +
+        ' <div class="card h-100">' +
+        '  <div class="row no-gutters h-100">' +
+        '   <div class="col-4 h-100">' +
+        '    <a href="/pages/book.html?id=' + book.id + '" class="text-decoration-none text-reset"><img' +
+        ' class="card-img" src="/assets/img/'+ book.picture + '" style="max-height: 100%;"/></a>' +
+        '   </div>' +
+        '   <div class="col-8 d-flex flex-column h-100">' +
+        '    <div class="card-body h-100">' +
+        '     <h4 class="card-title"><a href="/pages/book.html?id=' + book.id + '" class="text-decoration-none text-reset">' + book.title + '</a></h4>' +
+        '     <p class="card-text text-break">' + book.abstract.truncateWords(20) + '...</p>' +
+        '    </div>' +
+        '   </div>' +
+        '  </div>' +
+        ' </div>' +
+        '</div>';
+
+    }.bind(this));
+
+    booksContent += '</div>';
+    this.$similarBooksContainer.html(booksContent);
   },
 
   showError: function() {
