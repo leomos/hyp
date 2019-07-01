@@ -42,15 +42,15 @@ EventView.prototype = {
     }
 
     this.$headerContainer.html('<h2>' + event.name + '</h2>');
-
+    var eventDate = new Date(event.date);
     var eventContent = '' +
       '<div class="row">\n' +
       '    <div class="col text-center col-auto" style="max-width: 50%;"><img class="img-fluid" src="/assets/img/' + event.picture + '" /></div>\n' +
       '    <div class="col col-lg-6 col-12">\n' +
       '        <div class="d-block d-sm-none mb-3"></div>' +
       '        <h5><span><i class="fa fa-map-marker pr-1"></i></span><span class="text-secondary">' + event.location + '</span></h5>\n' +
-      // TODO: fix date
-      '        <h5><span><i class="fa fa-calendar pr-1"></i></span><span class="text-secondary">Wed, 12 Jun 2019 15:00:00 GMT</span></h5><a href="#">View on map <i class="fa fa-arrow-right"></i></a>\n' +
+      '        <h5><span><i class="fa fa-calendar pr-1"></i></span><span class="text-secondary">' + eventDate.toGMTString() + '</span></h5><a' +
+    ' href="#">View on map <i class="fa fa-arrow-right"></i></a>\n' +
       '        <p class="pt-2">' + event.description + '</p>\n' +
       '    </div>\n' +
       '</div>';
