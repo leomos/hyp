@@ -84,6 +84,13 @@ class Book extends Sequelize.Model {
         validate: {
           notEmpty: true,
         },
+      },
+      language: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        validate: {
+          notEmpty: true,
+        },
       }
     }, {
       sequelize,

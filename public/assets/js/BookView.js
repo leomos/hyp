@@ -80,7 +80,8 @@ BookView.prototype = {
       '                    <h5 class="pb-2">by ' + bookAuthors + '</h5>\n' +
       '                    <div class="pb-2" id="book-review-details">\n' +
       '                    </div>\n' +
-      '                    <h5 class="pb-2">' + book.format.capitalizeFirstLetter() + '</h5>\n' +
+      '                    <h5 class="">' + book.format.capitalizeFirstLetter() + '</h5>\n' +
+      '                    <h5 class="pb-2">' + book.language.capitalizeFirstLetter() + '</h5>\n' +
       '                    <h3 class="pb-2"><strong>' + bookPrice + '€</strong></h3>' +
       //TODO: cart logic
       '                    <button class="btn btn-primary" type="button" disabled="true" id="book-add-cart-button">Add to cart</button>' +

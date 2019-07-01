@@ -462,6 +462,7 @@ const seedBooks = (m) => {
         'the world’s resources for armaments is a great totalitarian technique for the subjugation of the people.',
       price: 999,
       publishing_house: 'Penguin Classics',
+      language: 'english',
     }),
     m.Book.create({
       publication_date: new Date(1952, 10, 12),
@@ -480,6 +481,7 @@ const seedBooks = (m) => {
       author_interview: null,
       price: 1499,
       publishing_house: 'Arrow',
+      language: 'english',
     }),
     m.Book.create({
       publication_date: new Date(1980, 7, 23),
@@ -502,6 +504,7 @@ const seedBooks = (m) => {
       author_interview: null,
       price: 1050,
       publishing_house: 'Bompiani',
+      language: 'italian',
     }),
     m.Book.create({
       publication_date: new Date(1989, 3, 1),
@@ -521,6 +524,7 @@ const seedBooks = (m) => {
       author_interview: null,
       price: 2070,
       publishing_house: 'Pan',
+      language: 'english',
     }),
     m.Book.create({
       publication_date: new Date(1904, 11, 11),
@@ -543,6 +547,7 @@ const seedBooks = (m) => {
       author_interview: null,
       price: 390,
       publishing_house: 'Newton Compton',
+      language: 'italian',
     }),
     m.Book.create({
       publication_date: new Date(2009, 6, 31),
@@ -563,6 +568,7 @@ const seedBooks = (m) => {
       author_interview: null,
       price: 8910,
       publishing_house: 'The MIT Press',
+      language: 'english',
     }),
   ])
     .then(([
