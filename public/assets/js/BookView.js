@@ -268,7 +268,7 @@ BookView.prototype = {
   },
 
   addRegistrationNeededModal: function () {
-    this.$container.append('' +
+    this.$mainContainer.append('' +
       '<div role="dialog" tabindex="-1" class="modal fade" id="registrationNeededModal">\n' +
       '    <div class="modal-dialog modal-dialog-centered" role="document">\n' +
       '        <div class="modal-content">\n' +
