@@ -25,7 +25,6 @@ FavoritesView.prototype = {
     var books = this.booksModel.getBooks().filter(function (book) {
       return book.is_favorite;
     });
-    console.log(books);
     var user = this.userModel.getUser();
 
     this.$container.html('');

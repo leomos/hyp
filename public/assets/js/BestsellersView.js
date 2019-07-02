@@ -25,7 +25,6 @@ BestsellersView.prototype = {
     var books = this.booksModel.getBooks().filter(function (book) {
       return book.is_bestseller;
     });
-    console.log(books);
     var user = this.userModel.getUser();
 
     this.$container.html('');

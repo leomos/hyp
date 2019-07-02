@@ -33,7 +33,6 @@ BookFilterView.prototype = {
   buildGenresDropdown: function() {
     var genres = this.bookFilterModel.getAvailableGenres();
     var genresIdsToShow = this.bookFilterModel.getGenresIdsToShow();
-    console.log(genresIdsToShow);
     this.$genresForm.html(
       '<div class="form-check py-1">' +
       ' <input class="form-check-input" type="checkbox" id="checkbox-all-genres">' +
@@ -81,7 +80,6 @@ BookFilterView.prototype = {
   buildThemesDropdown: function() {
     var themes = this.bookFilterModel.getAvailableThemes();
     var themesIdsToShow = this.bookFilterModel.getThemesIdsToShow();
-    console.log(themesIdsToShow);
     this.$themesForm.html(
       '<div class="form-check py-1">' +
       ' <input class="form-check-input" type="checkbox" id="checkbox-all-themes">' +
