@@ -34,7 +34,7 @@ app.use(session({
   resave: false,
   saveUninitialized: false,
   cookie: {
-    expires: 600000
+    //expires: 600000
   }
 }));
 app.use(bodyParser.json());
