@@ -1,8 +1,10 @@
-var BooksView = function(booksModel, userModel, bookFilterModel) {
+var BooksView = function(booksModel, userModel, bookFilterModel, cartModel) {
   this.booksModel = booksModel;
   this.userModel = userModel;
   this.bookFilterModel = bookFilterModel;
+  this.cartModel = cartModel;
 
+  this.putBookEvent = new Event();
 
   this.init();
 };
@@ -18,6 +20,7 @@ BooksView.prototype = {
     this.logoutHandler = this.buildCardsList.bind(this);
     this.modifyGenresFilterHandler = this.buildCardsList.bind(this);
     this.modifyThemesFilterHandler = this.buildCardsList.bind(this);
+    this.fetchCartHandler = this.createAddLinks.bind(this);
 
     // enable
     this.booksModel.fetchAllBooksEvent.attach(this.fetchAllBooksHandler);
@@ -27,6 +30,36 @@ BooksView.prototype = {
       this.bookFilterModel.modifyGenresFilterEvent.attach(this.modifyGenresFilterHandler);
       this.bookFilterModel.modifyThemesFilterEvent.attach(this.modifyThemesFilterHandler);
     }
+    if(this.cartModel) {
+      this.cartModel.fetchCartEvent.attach(this.fetchCartHandler);
+      this.booksModel.fetchAllBooksEvent.attach(this.fetchCartHandler);
+    }
+  },
+
+  createAddLinks: function() {
+    var books = this.booksModel.getBooks();
+    var booksIdsInCart = this.cartModel.getBooks().map(function(book){
+      return book.id;
+    });
+
+    books.forEach(function (book) {
+      var addLink = $('#link-add-cart-'+book.id);
+      if(booksIdsInCart.indexOf(book.id) > -1) {
+        addLink
+          .removeAttr('href')
+          .html('Book already in cart')
+          .addClass('text-secondary');
+      } else {
+        addLink.on('click', function (event) {
+          event.preventDefault();
+          addLink
+            .html('<div class="spinner-grow spinner-grow-sm" role="status">\n' +
+              '  <span class="sr-only">Loading...</span>\n' +
+              '</div>');
+          this.putBookEvent.notify({bookId: book.id, quantity: 1});
+        }.bind(this));
+      }
+    }.bind(this))
   },
 
   buildCardsList: function () {
@@ -59,7 +92,6 @@ BooksView.prototype = {
         '     <p class="card-text text-break">' + book.abstract.truncateWords(20) + '...</p>' +
         '    </div>' +
         '    <div class="card-footer bg-transparent">' + this.createAddToCartLink(user, book.id) +
-        //TODO: event's link
              (book.hasEvents ? '<a class="card-link" href="/pages/book.html?id=' + book.id + '#events-container">Events</a>' : '') + '</div>' +
         '   </div>' +
         '  </div>' +
@@ -74,7 +106,7 @@ BooksView.prototype = {
   createAddToCartLink: function(user, bookId) {
     if(user) {
       //TODO: cart logic
-      return '<a class="card-link" href="#">Add to cart</a>';
+      return '<a class="card-link" id="link-add-cart-' + bookId + '" href="#">Add to cart</a>';
     } else {
       return '' +
         '<button type="button" class="btn btn-link mr-4 p-0 card-link" data-toggle="modal"' +

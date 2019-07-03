@@ -46,7 +46,13 @@ UserNavbarView.prototype = {
   },
 
   buildCartButton: function(user) {
-    this.$userCart.prop('disabled', !Boolean(user));
+    if(user) {
+      this.$userCart.attr('href', '/pages/cart.html');
+      this.$userCart.find('button').prop('disabled', false);
+    } else {
+      this.$userCart.removeAttr('href');
+      this.$userCart.find('button').prop('disabled', true);
+    }
   },
 
   buildMenu: function (user) {

@@ -7,9 +7,8 @@ var scriptsToLoad = [
   'UserNavbarController.js',
   'BreadcrumbsModel.js',
   'BreadcrumbsView.js',
-  'BookModel.js',
-  'BookView.js',
   'CartModel.js',
+  'CartView.js',
   'CartController.js',
 ];
 
@@ -21,13 +20,14 @@ $(function () {
     var breadcrumbsModel = new BreadcrumbsModel();
     var breadcrumbsView = new BreadcrumbsView(breadcrumbsModel);
     var cartModel = new CartModel();
-    var bookModel = new BookModel();
-    var bookView = new BookView(bookModel, userModel, breadcrumbsModel, cartModel);
-    var cartController = new CartController(cartModel, bookView);
+    var cartView = new CartView(cartModel);
+    var cartController = new CartController(cartModel, cartView);
+
+    window.c = cartModel;
 
     userModel.getDetails();
     breadcrumbsModel.addBreadcrumb('Home', '/index.html');
-    breadcrumbsModel.addBreadcrumb('Books', '/pages/books.html');
+    breadcrumbsModel.addBreadcrumb('Cart', '/pages/cart.html', true);
     cartModel.fetchCart();
   });
 });

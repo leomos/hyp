@@ -1,8 +1,11 @@
-var BookView = function(bookModel, userModel, breadcrumbsModel) {
+var BookView = function(bookModel, userModel, breadcrumbsModel, cartModel) {
   this.bookModel = bookModel;
   this.userModel = userModel;
   this.bookId = null;
   this.breadcrumbsModel = breadcrumbsModel;
+  this.cartModel = cartModel;
+
+  this.putBookEvent = new Event();
 
   this.init();
 };
@@ -24,6 +27,7 @@ BookView.prototype = {
     this.fetchBookEventsHandler = this.buildEventsList.bind(this);
     this.fetchBookReviewsHandler = this.buildReviewsList.bind(this);
     this.fetchSimilarBooksHandler = this.buildSimilarBooksList.bind(this);
+    this.fetchCartHandler = this.buildAddButton.bind(this);
 
     //enable
     this.bookModel.fetchBookEvent.attach(this.fetchBookHandler);
@@ -41,12 +45,37 @@ BookView.prototype = {
     this.userModel.getDetailsEvent.attach(this.getDetailsHandler);
     this.userModel.logoutEvent.attach(this.getDetailsHandler);
 
+    this.cartModel.fetchCartEvent.attach(this.fetchCartHandler);
+
     this.bookId = getUrlParameter('id');
     if(!this.bookId || !parseInt(this.bookId)) {
       this.showError();
       return;
     }
     this.bookModel.fetchBook(parseInt(this.bookId));
+  },
+
+  buildAddButton: function() {
+    if(this.cartModel) {
+      var book = this.bookModel.getBook();
+      var booksInCart = this.cartModel.getBooks();
+      var me = this;
+      var button = this.$mainContainer.find('#book-add-cart-button');
+      if(booksInCart.find(function(b){return b.id===book.id})){
+        button.html('Book already in cart!');
+        button.attr('disabled', true);
+      }
+      button.click(function () {
+        button.html('' +
+          'Add to cart <div class="spinner-grow spinner-grow-sm" role="status">\n' +
+          '  <span class="sr-only">Loading...</span>\n' +
+          '</div>');
+        me.putBookEvent.notify({
+          bookId: book.id,
+          quantity: 1,
+        });
+      });
+    }
   },
 
   buildBookDetails: function() {
