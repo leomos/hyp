@@ -130,8 +130,21 @@ BookView.prototype = {
     var abstractContent = '' +
       '    <p style="max-width: 700px;">' + book.abstract + '<br /></p>\n' +
       //TODO: interview
-      //'    <p style="max-width: 700px;">Take a look at the <a href="#">author&#39;s interview</a><br /></p>\n' +
-      '';
+      (book.author_interview ?
+      '<div role="tablist" id="accordion-interview" style="max-width: 700px;">\n' +
+      '    <div class="card">\n' +
+      '        <div role="tab" class="card-header">\n' +
+      '            <h5 class="mb-0"><a data-toggle="collapse" aria-expanded="true" aria-controls="accordion-interview' +
+      ' .item-1" href="div#accordion-interview .item-1">Author\'s interview</a></h5>\n' +
+      '        </div>\n' +
+      '        <div role="tabpanel" data-parent="#accordion-interview" class="collapse item-1">\n' +
+      '            <div class="card-body">\n' +
+      '                <p class="card-text">' + book.author_interview.replace(/\n/g, '<br>') + '</p>\n' +
+      '            </div>\n' +
+      '        </div>\n' +
+      '    </div>\n' +
+      '</div>' :
+      '');
     this.$abstractContainer.html(abstractContent);
     this.addRegistrationNeededModal();
   },
