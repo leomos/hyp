@@ -41,7 +41,7 @@ BestsellersView.prototype = {
         '     <h6 class="text-muted card-subtitle mb-2">' + book.authors.join(', ') + '</h6>' +
         '     <p class="card-text text-break">' + book.abstract.truncateWords(20) + '...</p>' +
         '    </div>' +
-        '    <div class="card-footer bg-transparent">' + this.createAddToCartLink(user, book.id) +
+        '    <div class="card-footer bg-transparent">' + //this.createAddToCartLink(user, book.id) +
         (book.hasEvents ? '<a class="card-link" href="#">Events</a>' : '') + '</div>' +
         '   </div>' +
         '  </div>' +
@@ -53,7 +53,7 @@ BestsellersView.prototype = {
 
   createAddToCartLink: function(user, bookId) {
     if(user) {
-      return '<a class="card-link" href="#">Add to cart</a>';
+      return '<a class="card-link" id="link-add-cart-' + bookId + '" href="#">Add to cart</a>';
     } else {
       return '<span class="mr-4 text-secondary">Add to cart</span>'
     }
