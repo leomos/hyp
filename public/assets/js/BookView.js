@@ -97,7 +97,6 @@ BookView.prototype = {
 
     var bookYear = (new Date(book.publication_date)).getFullYear();
     var bookAuthors = authors.map(function(author){
-      //TODO: author's link
       return '<a href="/pages/author.html?id=' + author.id + '"><span style="text-decoration: underline;">' + author.first_name + ' ' + author.last_name + '</span></a>';
     });
     var bookPrice = (parseInt(book.price)/100).toFixed(2);
@@ -116,7 +115,6 @@ BookView.prototype = {
       '                    <h5 class="">' + book.format.capitalizeFirstLetter() + '</h5>\n' +
       '                    <h5 class="pb-2">' + book.language.capitalizeFirstLetter() + '</h5>\n' +
       '                    <h3 class="pb-2"><strong>' + bookPrice + '€</strong></h3>' +
-      //TODO: cart logic
       '                    <button class="btn btn-primary" type="button" id="book-add-cart-button">' +
       '                        Add to cart' +
       '                    </button>' +
@@ -199,7 +197,6 @@ BookView.prototype = {
         '        <div class="col col-3"><img class="img-fluid" src="/assets/img/' + event.picture + '" /></div>\n' +
         '        <div class="col">\n' +
         '            <h4>' + event.name + '</h4>\n' +
-        //TODO: event link
         '            <h4><a href="/pages/event.html?id='+ event.id   +'"><span style="text-decoration: underline;">Go' +
         ' to' +
         ' event</span></a></h4>\n' +
