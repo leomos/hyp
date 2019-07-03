@@ -105,7 +105,6 @@ BooksView.prototype = {
 
   createAddToCartLink: function(user, bookId) {
     if(user) {
-      //TODO: cart logic
       return '<a class="card-link" id="link-add-cart-' + bookId + '" href="#">Add to cart</a>';
     } else {
       return '' +
