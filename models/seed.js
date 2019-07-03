@@ -1,5 +1,3 @@
-//TODO: remove loremipsum
-
 const seedUsers = (m) => {
   return Promise.all([
     m.User.create({
@@ -334,9 +332,6 @@ const seedThemes = (m) => {
     }})
 };
 
-const loremIpsumForReview = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque risus mi, congue quis ' +
-  'nisl sit amet, pulvinar fermentum eros. Aliquam nisi quam, tempor aliquam blandit non, posuere vel orci. ' +
-  'Vestibulum varius tempor mi, pellentesque cursus est efficitur ornare. Donec id tincidunt urna. Nam posuere.';
 const seedReviews = (m) => {
   return Promise.all([
     m.Review.create({
@@ -359,42 +354,43 @@ const seedReviews = (m) => {
       date: new Date(2019, 1, 1)
     }),
     m.Review.create({
-      content: loremIpsumForReview,
+      content: 'I loved the plot twists and loved the chemistry between the two main characters. ' +
+        'I ordered the next book so excited. Amazing!',
       rating: 4,
       date: new Date(2019, 1, 1)
     }),
     m.Review.create({
-      content: loremIpsumForReview,
+      content: 'Such a fun read, I highly recommend!',
       rating: 5,
       date: new Date(2019, 1, 1)
     }),
     m.Review.create({
-      content: loremIpsumForReview,
+      content: 'Very disappointed by this book. I don\'t recommend it al all!',
       rating: 1,
       date: new Date(2019, 1, 1)
     }),
     m.Review.create({
-      content: loremIpsumForReview,
+      content: 'Very disappointed by this book. I don\'t recommend it al all!',
       rating: 2,
       date: new Date(2019, 1, 1)
     }),
     m.Review.create({
-      content: loremIpsumForReview,
+      content: 'Quite a good book, nothing special.',
       rating: 3,
       date: new Date(2019, 1, 1)
     }),
     m.Review.create({
-      content: loremIpsumForReview,
+      content: 'Great book, fun read!',
       rating: 4,
       date: new Date(2019, 1, 1)
     }),
     m.Review.create({
-      content: loremIpsumForReview,
+      content: 'Such a fun read, I highly recommend!',
       rating: 5,
       date: new Date(2019, 1, 1)
     }),
     m.Review.create({
-      content: loremIpsumForReview,
+      content: 'Very disappointed by this book. I don\'t recommend it al all!',
       rating: 1,
       date: new Date(2019, 1, 1)
     }),
@@ -588,13 +584,6 @@ const seedBooks = (m) => {
     }})
 };
 
-const loremIpsumForEvent = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sit amet erat nunc. Etiam' +
-  ' eu vestibulum ante, vitae vehicula lectus. Ut finibus fermentum diam eu commodo. Pellentesque turpis ' +
-  'magna, cursus nec magna eu, tempor pulvinar nisl. Nam cursus semper turpis hendrerit tempus. ' +
-  'Vestibulum pharetra nulla tortor, non ornare lectus condimentum.  Lorem ipsum dolor sit amet, consectetur ' +
-  'adipiscing elit. Sed sit amet erat nunc. Etiam eu vestibulum ante, vitae vehicula lectus. Ut finibus ' +
-  'fermentum diam eu commodo. Pellentesque turpis magna, cursus nec magna eu, tempor pulvinar nisl. Nam ' +
-  'cursus semper turpis hendrerit tempus. Vestibulum pharetra nulla tortor, non ornare lectus condimentum. ';
 const seedEvents = (m) => {
   return Promise.all([
     m.Event.create({
@@ -607,21 +596,31 @@ const seedEvents = (m) => {
     m.Event.create({
       date: new Date(Date.UTC(2019, 6, 13, 10)),
       name: 'The Orwellian Catastrophe: Is Privacy Really Threatened?',
-      description: loremIpsumForEvent,
+      description: 'The dystopian tradition in literature is a relatively modern one and is usually a ' +
+        'criticism of the time in which the author lives. These novels are often political statements, ' +
+        'as was Orwell\'s other dystopian novel, Animal Farm, published in 1945. By using a ' +
+        'dystopian setting for 1984, Orwell suggests the possibility of a utopia, and then makes ' +
+        'very clear, with each horror that takes place, the price humankind pays for "perfect" societies.',
       picture: '1984_e2.jpg',
       location: 'Place Georges-Pompidou, 75004 Paris, France',
     }),
     m.Event.create({
       date: new Date(Date.UTC(2019, 6, 28, 12)),
       name: 'Applying the Old Man and the Sea\'s lessons to you daily life',
-      description: loremIpsumForEvent,
+      description: '“Success” is all too often assumed to be the indicator of the value of a man. But success, ' +
+        'in and of itself, merely speaks to a particular status and may have nothing to do with the journey that ' +
+        'the man took to get there, or whether or not he retained his integrity along the way. ' +
+        'Among the many aspects of the story, it is the idea of redefining success and victory that makes ' +
+        'The Old Man and the Sea, Ernest Hemingway’s classic novella, so profound.',
       picture: 'old-man-sea_e1.jpg',
       location: '24 Dequetteville Terrace, Kent Town SA 5067, Australia',
     }),
     m.Event.create({
       date: new Date(Date.UTC(2019, 6, 12, 15)),
       name: 'The Pillars of our contemporary life',
-      description: loremIpsumForEvent,
+      description: 'For those of you who missed my Side Roads feature on The Pillars of the Earth last November, ' +
+        'here, once again, are the five reasons you really owe it to yourself to read the masterful ' +
+        'epic novel by Ken Follett.',
       picture: 'pillars-of-earth_e1.jpg',
       location: '18 Tsing Luk St, Tsing Yi, Hong Kong',
     }),
