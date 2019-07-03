@@ -210,9 +210,8 @@ BookView.prototype = {
         '        <div class="col col-3"><img class="img-fluid" src="/assets/img/' + event.picture + '" /></div>\n' +
         '        <div class="col">\n' +
         '            <h4>' + event.name + '</h4>\n' +
-        '            <h4><a href="/pages/event.html?id='+ event.id   +'"><span style="text-decoration: underline;">Go' +
-        ' to' +
-        ' event</span></a></h4>\n' +
+        '            <a href="/pages/event.html?id='+ event.id   +'">Go to event <i class="fa' +
+        ' fa-arrow-right"></i></a>' +
         '        </div>\n' +
         '    </div>\n' +
         '</div>'
