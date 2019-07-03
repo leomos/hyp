@@ -17,6 +17,9 @@ CartController.prototype = {
     if(this.view.deleteBookEvent) {
       this.view.deleteBookEvent.attach(this.deleteBook.bind(this));
     }
+    if(this.view.deleteAllBooksEvent) {
+      this.view.deleteAllBooksEvent.attach(this.deleteAllBooks.bind(this));
+    }
   },
 
   changeBookQuantity: function (sender, args) {
@@ -29,5 +32,9 @@ CartController.prototype = {
 
   deleteBook: function(sender, args) {
     this.model.deleteBook(args.bookId);
+  },
+
+  deleteAllBooks: function(sender, args) {
+    this.model.deleteAllBooks();
   },
 };

@@ -3,6 +3,7 @@ var CartView = function(cartModel) {
 
   this.changeBookQuantityEvent = new Event();
   this.deleteBookEvent = new Event();
+  this.deleteAllBooksEvent = new Event();
 
   this.init();
 };
@@ -30,6 +31,14 @@ CartView.prototype = {
       this.$cartContainer.html('' +
         '<h2>Your cart</h2>' +
         '<h5>There are no books in your cart...</h5>');
+
+      this.$summaryContainer.html('' +
+        '<div class="card">\n' +
+        '    <div class="card-body">\n' +
+        '        <h4 class="card-title">Total price</h4>\n' +
+        '        <button class="btn btn-primary w-100" type="button" id="button-checkout">Continue to checkout</button>' +
+        '    </div>\n' +
+        '</div>');
       return;
     }
 
@@ -111,14 +120,18 @@ CartView.prototype = {
       })
     }.bind(this));
 
-
+    console.log(totalPrice);
     this.$summaryContainer.html('' +
       '<div class="card">\n' +
       '    <div class="card-body">\n' +
       '        <h4 class="card-title">Total price</h4>\n' +
-      '        <h5><strong>' + totalPrice.toFixed(2) + '€</strong></h5><button class="btn btn-primary w-100"' +
-      ' type="button">Continue to checkout</button></div>\n' +
-      '</div>')
+      '        <h5><strong>' + totalPrice.toFixed(2) + '€</strong></h5>' +
+      '        <button class="btn btn-primary w-100" type="button" id="button-checkout">Continue to checkout</button>' +
+      '    </div>\n' +
+      '</div>');
+    $('#button-checkout').on('click', function (event) {
+      this.deleteAllBooksEvent.notify();
+    }.bind(this))
   },
 
 };
