@@ -107,7 +107,6 @@ BookFilterModel.prototype = {
       var shouldBeShowed = true;
       if(this.genresIdsToShow) {
         shouldBeShowed = this.genresIdsToShow.indexOf(book.genre_id) > -1;
-        console.log(shouldBeShowed);
       }
       if(this.themesIdsToShow) {
         shouldBeShowed = shouldBeShowed && book.themes_ids.some(function(themeId){
