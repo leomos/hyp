@@ -295,6 +295,10 @@ BookView.prototype = {
 
     }.bind(this));
 
+    if(books.length < 1) {
+      booksContent += '<div class="col"><h5>No similar books found...</h5></div>';
+    }
+
     booksContent += '</div>';
     this.$similarBooksContainer.html(booksContent);
   },
