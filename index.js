@@ -13,7 +13,7 @@ var session = require('express-session');
 var serveStatic = require('serve-static');
 var bodyParser = require('body-parser');
 
-var serverPort = 8080;
+var serverPort = 10101;
 
 // swaggerRouter configuration
 var options = {
