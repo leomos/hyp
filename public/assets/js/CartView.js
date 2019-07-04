@@ -52,7 +52,7 @@ CartView.prototype = {
     });
 
     var createSelect = function(bookId, quantity) {
-      var selectContent = '<select class="form-control d-inline w-25" id="select-quantity-' + bookId + '">';
+      var selectContent = '<select class="form-control d-inline w-50" id="select-quantity-' + bookId + '">';
 
       for (var i = 1; i <= 10; i++) {
         selectContent += '<option ' + (i===quantity ? 'selected' : '') + '>'  + i + '</option>';
