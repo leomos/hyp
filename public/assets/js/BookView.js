@@ -133,7 +133,7 @@ BookView.prototype = {
       '    <p style="max-width: 700px;">' + book.abstract + '<br /></p>\n' +
       //TODO: interview
       (book.author_interview ?
-      '<div role="tablist" id="accordion-interview" style="max-width: 700px;">\n' +
+      '<div role="tablist" id="accordion-interview" style="max-width: 700px;" class="mb-5">\n' +
       '    <div class="card">\n' +
       '        <div role="tab" class="card-header">\n' +
       '            <h5 class="mb-0"><a data-toggle="collapse" aria-expanded="true" aria-controls="accordion-interview' +
