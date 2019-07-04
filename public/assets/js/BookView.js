@@ -112,8 +112,10 @@ BookView.prototype = {
       '                    <h5 class="pb-2">by ' + bookAuthors + '</h5>\n' +
       '                    <div class="pb-2" id="book-review-details">\n' +
       '                    </div>\n' +
-      '                    <h5 class="">' + book.format.capitalizeFirstLetter() + '</h5>\n' +
-      '                    <h5 class="pb-2">' + book.language.capitalizeFirstLetter() + '</h5>\n' +
+      '                    <h6 class="text-secondary">Format: <strong class="text-body">' + book.format.capitalizeFirstLetter() + '</strong></h6>\n' +
+      '                    <h6 class="text-secondary">Language: <strong class="text-body">' + book.language.capitalizeFirstLetter() + '</strong></h6>\n' +
+      '                    <h6 class="text-secondary">ISBN: <strong class="text-body">' + book.isbn + '</strong></h6>\n' +
+      '                    <h6 class="text-secondary pb-2">Pages: <strong class="text-body">' + book.number_of_pages + '</strong></h6>\n' +
       '                    <h3 class="pb-2"><strong>' + bookPrice + '€</strong></h3>' +
       '                    <button class="btn btn-primary" type="button" id="book-add-cart-button">' +
       '                        Add to cart' +
