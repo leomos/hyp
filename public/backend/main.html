@@ -1,0 +1,138 @@
+<!doctype html>
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
+<meta name="generator" content="ReText 7.0.4">
+<title>BACKEND</title>
+</head>
+<body>
+<h1>Documentation of the Backend part</h1>
+<blockquote>
+<p>Deliverable D1</p>
+</blockquote>
+<h2>General group information</h2>
+<table>
+<thead>
+<tr>
+<th>Member n.</th>
+<th>Role</th>
+<th>First name</th>
+<th>Last Name</th>
+<th>Matricola</th>
+<th>Email address</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>administrator</td>
+<td>Leonardo</td>
+<td>Mosciatti</td>
+<td>845344</td>
+<td>leonardo.mosciatti@mail.polimi.it</td>
+</tr>
+</tbody>
+</table>
+<h2>Links to other deliverables</h2>
+<ul>
+<li>
+<p>Deliverable D0: the web application is accessible at
+<a href="https://ebookit.leomos.me">this address</a>.</p>
+</li>
+<li>
+<p>Deliverable D2: the YAML or JSON file containing the specification of the app
+API can be found at <a href="https://ebookit.leomos.me/backend/spec.yaml">this address</a>.</p>
+</li>
+<li>
+<p>Deliverable D3: the SwaggerUI page of the same API is available at
+<a href="https://ebookit.leomos.me/backend/swaggerui">this address</a>.</p>
+</li>
+<li>
+<p>Deliverable D4: the source code of D0 is available as a zip file at
+<a href="https://ebookit.leomos.me/backend/app.zip">this address</a>.</p>
+</li>
+<li>
+<p>Deliverable D5: the address of the online source control repository is
+available <a href="https://github.com/leomos/hyp">this address</a>. We hereby declare that this
+is a private repository and, upon request, we will give access to the
+instructors.</p>
+</li>
+</ul>
+<h2>Specification</h2>
+<h3>Web Architecture</h3>
+<p><img alt="Web Architecture Diagram" src="architecture.png" title="Web Architecture Diagram"></p>
+<p>The only resources passed between the presentation and the application layer are in the form of raw datas with JSON format. This means that no HTML can be retrieved from the application layer, thus no HTML is rendered server-side.</p>
+<h3>API</h3>
+<h4>REST compliance</h4>
+<p>Following the Richardson Maturity Level, the application could be placed at (at least) level 3.
+GET and POST verbs are the most used because there was not much need to manipulate resources.
+The <em>cart</em> model uses also the DELETE, PATCH and PUT verbs to control the deletion, quantity changes and addition of books to the cart.</p>
+<p>All REST constraints are respected, the application has a unique base URI to which the requests should be performed, it uses standard HTTP verbs, and defines a consistent media type for all its requests (<code>application/json</code>).</p>
+<p>A note should be done about how the application handles the relationships between the various models. All of them are in the form of unique IDs of the related model. For example the <em>book</em> model exposes in its representation an array of <code>authors_ids</code> representing the authors of that book. This decision was taken because it was decided to have as much flexibility as possible given the low complexity of the endpoints. </p>
+<p>It could be argued that since the relations are represented as unique ids and the hyperlinks to represent them are only a matter of concatenating the base URI, the endpoint and the id the application could be at level 4 in the Richardson Maturity Level.</p>
+<h4>OpenAPI Resource models</h4>
+<ul>
+<li>Author: represents an author.</li>
+<li>Book: represents a book.</li>
+<li>BookQuantity: represents how many copies of a book a user has in its cart.</li>
+<li>Cart: represents all the quantities of the books a user has in its cart.</li>
+<li>Error: represents a specification to an error occurred.</li>
+<li>Event: represents an event.</li>
+<li>Genre: represents a literary genre.</li>
+<li>Review: represents a review made by a user for a book.</li>
+<li>Theme: represents a literary theme.</li>
+<li>User: represent the details of a user.</li>
+<li>UserLogin: represents the data necessary for a user to request to login.</li>
+<li>UserRegistration: represents the data necessary for a user to create a new account.</li>
+</ul>
+<h3>Data model</h3>
+<p><img alt="ER Diagram" src="hyp-er.png" title="ER Diagram"></p>
+<p>The principal resources are mapped 1-to-1 from the ER diagram to the OpenAPI data model apart from the relations, the User model and the Cart model.</p>
+<p>{0,1,Many}-To-Many relations are represented as arrays of ids in the OpenAPI model (for example the relation SimilarBook is represented by the array <code>similar_books_ids</code> in the <code>Book</code> model, or the relation BookTheme is represented as an array of <code>books_ids</code> in the <code>Theme</code> model and an array of <code>themes_ids</code> in the <code>Book</code> model).</p>
+<p>For the User data model, three OpenAPI models were introduced <code>User</code>, <code>UserLogin</code> and <code>UserRegistration</code> respectively for  displaying the logged user's details, handling login, and registering new users. Three different resources were necessary because those three actions had different needs.</p>
+<p>For the Cart data model were created the <code>Cart</code> model which contains an array of <code>BookQuantity</code> models that represents the quantities of the books that a user has in its cart.</p>
+<p>Finally an <code>Error</code> model was used to give as much information as possible when a request had some kind of error.</p>
+<h2>Implementation</h2>
+<h3>Tools used</h3>
+<p>The backend implementation were written using JetBrains Intellij IDE. The language chosen was Node.js and part of the code was generated with the swagger-codegen utility. The library Sequelize was used to manage the database, and the swagger library for the routing of the endpoints and logic that links them. The HTTP framework used was swagger's default: connect. Other libraries were used to handle cookies and authentication.</p>
+<h3>Discussion</h3>
+<ul>
+<li>
+<p>How did you make sure your web application adheres to the provided OpenAPI
+specification?</p>
+<p>In the frontend all the requests concerning the logic of the application are made to the API endpoint. Consequently the constraints given by the API must be respected. The models specified in the OpenAPI specification are controlled and the requests are parsed in the backend to verify that they adheres to said models.</p>
+</li>
+<li>
+<p>Why do you think your web application adheres to common practices to partition
+the web application (static assets vs. application data)</p>
+<p>The application does mainly two things, serving an API and serving static files via HTTP. The static files are created in such a way that they are able to communicate with the API, in this way those two things are kept separeted and serving the static assets does not interferes in any way with the application data.</p>
+</li>
+<li>
+<p>Describe synthetically why and how did you manage session state, what are the
+state change triggering actions (e.g., POST to login etc..).</p>
+<p>The session state is managed in the backend. Every request that requires the user to be authenticated cannot be performed if the user is not logged in. The login procedure consists in a POST request that must be made to <code>/user/login</code> endpoint using the <code>UserLogin</code> OpenAPI model. If the credentials are valid a <code>Set-Cookie</code> HTTP header is in the response of said request, and it contains a cookie called <code>user_sid</code>. The <code>user_sid</code> cookie contains a string which uniquely identifies the session for the user. Following requests that requires authentication can then be made setting the <code>Cookie</code> HTTP header with the <code>user_sid</code> cookie, and access to the resources will be granted.</p>
+</li>
+<li>
+<p>Which technology did you use (relational or a no-SQL database) for managing
+the data model?</p>
+<p>The data is stored in a SQLite database which is a relational database.</p>
+</li>
+</ul>
+<h2>Other information</h2>
+<h3>Task assignment</h3>
+<ul>
+<li>Leonardo Mosciatti worked on 100% of the project.</li>
+</ul>
+<h3>Analysis of existing API</h3>
+<p>Two APIs have inspired the OpenAPI specification:</p>
+<ul>
+<li><a href="https://stripe.com/docs/api">Stripe</a> for resource naming.</li>
+<li><a href="https://developer.github.com/v3">GitHub</a> for HTTP verbs usage.</li>
+</ul>
+<h3>Learning outcome</h3>
+<ul>
+<li>Leonardo Mosciatti had the possibility to write an entire JavaScript application applying the MVC design pattern. Most importantly in the frontend no use of JavaScript framework was made and all the scripts relies on the Observer/Observable pattern. To implement this, a deep understanding of JavaScript's contexts and how <code>this</code> works were gained. Also the concept of <code>Promises</code> and asynchronous code had been made much more clear.</li>
+</ul>
+
+</body>
+</html>
